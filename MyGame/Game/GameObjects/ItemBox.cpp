@@ -50,7 +50,7 @@ void ItemBox::Initialize()
 	Obj3D* pObj = new Obj3D();
 	pObj->SetModel(ModelRepository::GetInstance()->GetModel(L"ItemBox"));
 	pObj->GetTransform()->SetScale(2);
-	pObj->SetLight(false);
+	pObj->SetLight(true);
 	AddChild(pObj);
 
 	// ボックスコライダを追加

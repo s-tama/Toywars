@@ -139,4 +139,9 @@ void Bullet::OnCollisionStay(MyLibrary::GameObject* collider)
 			m_flag.On(IS_HIT_OBSTACLE);
 		}
 	}
+
+	if (collider->GetTag() == "Bullet")
+	{
+		m_flag.On(IS_HIT_OBSTACLE);
+	}
 }
