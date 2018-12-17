@@ -24,7 +24,8 @@ using namespace DirectX::SimpleMath;
 /// コンストラクタ
 /// </summary>
 EnemyWandering::EnemyWandering(AI* pAI) :
-	EnemyStrategy(pAI)
+	EnemyStrategy(pAI),
+	m_time(0)
 {
 }
 
@@ -33,5 +34,6 @@ EnemyWandering::EnemyWandering(AI* pAI) :
 /// </summary>
 void EnemyWandering::Execute(float elapsedTime)
 {
-	return;
+	// 徘徊する
+	m_pAI->GetEnemy()->GetTransform()->Translate(0, 0, Enemy::ADVANCE_SPEED * elapsedTime);
 }
