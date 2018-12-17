@@ -11,6 +11,7 @@
 
 #include "EnemyWaiting.h"
 #include "EnemyAttack.h"
+#include "EnemyWandering.h"
 
 
 
@@ -62,20 +63,16 @@ void AI_Level1::Think(float elapsedTime)
 	// 一定の行動をとる
 	Transform* pTrans = m_pEnemy->GetTransform();
 	Vector3 axis = pTrans->GetUp();
-	if (m_time % 300 == 0)
+	if (m_time % 180 == 0)
 	{
+		// 向きを設定
 		float dir = XMConvertToRadians(DIRECTION[Math::GetRand(0, 4)]);
 		pTrans->SetRotation(Quaternion::CreateFromAxisAngle(axis, dir));
 	}
-
-	// 一定間隔で弾を発射する
-	if (m_time % 30 == 0) ChangeStrategy(new EnemyAttack(this));
-	else ChangeStrategy(new EnemyWaiting(this));
-
-	// 現在の戦略を実行
-	if (m_pCurrentStrategy != nullptr)
+	else
 	{
-		m_pCurrentStrategy->Execute(elapsedTime);
+		// 徘徊行動
+		ChangeStrategy(new EnemyWandering(this));
 	}
 
 	m_timef += elapsedTime;

@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "../Strategies/AI_Level0.h"
+#include "../Strategies/AI_Level1.h"
 
 
 
@@ -41,9 +42,12 @@ void EnemyManager::Initialize()
 	{
 		m_pEnemies[i] = new Enemy();
 		m_pEnemies[i]->GetTransform()->SetPosition(Enemy::APPEAR_POS[Math::GetRand(0, 8)]);
-		m_pEnemies[i]->SetAI(new AI_Level0(m_pEnemies[i]));
 		GetNodeManager()->AddNode(m_pEnemies[i]);
 	}
+	// 敵のAIレベルを設定
+	m_pEnemies[0]->SetAI(new AI_Level0(m_pEnemies[0]));
+	m_pEnemies[1]->SetAI(new AI_Level1(m_pEnemies[1]));
+	m_pEnemies[2]->SetAI(new AI_Level0(m_pEnemies[2]));
 
 	
 	for (int i = 0; i < m_pEnemies.size(); i++)
