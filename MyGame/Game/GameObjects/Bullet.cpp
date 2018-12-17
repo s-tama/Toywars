@@ -127,7 +127,7 @@ void Bullet::OnCollisionStay(MyLibrary::GameObject* collider)
 	{
 		if (this->m_pOwner->GetTag() == "Player")
 		{
-			collider->SetActive(false);
+			collider->Destroy();
 			m_flag.On(IS_HIT_OBSTACLE);
 		}
 	}

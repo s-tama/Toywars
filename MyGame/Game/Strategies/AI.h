@@ -8,13 +8,7 @@
 #include "MyLibrary.h"
 
 #include "../GameObjects/Enemy.h"
-
-
-// クラスの宣言 -------------------------------------------------------------------
-namespace MyGame
-{
-	class EnemyStrategy;
-}
+#include "../Strategies/EnemyStrategy.h"
 
 
 // クラスの定義 -------------------------------------------------------------------
@@ -44,6 +38,7 @@ namespace MyGame
 		/// <param name="pNextStrategy"></param>
 		virtual void ChangeStrategy(EnemyStrategy* pNextStrategy) 
 		{
+			delete m_pCurrentStrategy;
 			m_pCurrentStrategy = nullptr;
 			m_pCurrentStrategy = pNextStrategy; 
 		}
@@ -54,7 +49,7 @@ namespace MyGame
 
 	protected:
 
-		Enemy* m_pEnemy;		// 敵へのポインタ
+		Enemy* m_pEnemy;						// 敵へのポインタ
 		EnemyStrategy* m_pCurrentStrategy;		// 現在の戦略
 	};
 }

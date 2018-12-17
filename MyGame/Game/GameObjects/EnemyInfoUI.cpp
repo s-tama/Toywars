@@ -44,7 +44,7 @@ void EnemyInfoUI::Initialize()
 /// <param name="elapsedTime">経過時間</param>
 void EnemyInfoUI::Update(float elapsedTime)
 {
-	int enemyNum = m_pEnemyManager->GetEnemyCount();
+	int enemyNum = m_pEnemyManager->GetEnemies().size();
 	GameText::GetInstance()->AddText(Vector2(6, 0), Colors::Black, 2.1f, L"敵の数 %d", enemyNum);
 	GameText::GetInstance()->AddText(Vector2(10, 0), Colors::White, 2, L"敵の数 %d", enemyNum);
 }

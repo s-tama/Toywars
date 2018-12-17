@@ -19,28 +19,13 @@ using namespace DirectX::SimpleMath;
 
 
 
-// 静的メンバ変数の定義 -------------------------------------------------------
-std::unique_ptr<EnemyWaiting> EnemyWaiting::m_pInstance = nullptr;
-
-
-
 // メンバ関数の定義 -----------------------------------------------------------
 /// <summary>
 /// コンストラクタ
 /// </summary>
-EnemyWaiting::EnemyWaiting()
+EnemyWaiting::EnemyWaiting(AI* pAI):
+	EnemyStrategy(pAI)
 {
-}
-
-/// <summary>
-/// クラスのインスタンスを取得する
-/// </summary>
-/// <returns>インスタンス</returns>
-EnemyWaiting* EnemyWaiting::GetInstance()
-{
-	if (m_pInstance == nullptr)
-		m_pInstance.reset(new EnemyWaiting);
-	return m_pInstance.get();
 }
 
 /// <summary>
@@ -48,5 +33,5 @@ EnemyWaiting* EnemyWaiting::GetInstance()
 /// </summary>
 void EnemyWaiting::Execute(float elapsedTime)
 {
-	
+	return;
 }

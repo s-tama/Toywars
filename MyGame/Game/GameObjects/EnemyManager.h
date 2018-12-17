@@ -42,6 +42,6 @@ namespace MyGame
 	private:
 
 		std::vector<Enemy*> m_pEnemies;		// 敵の配列
-		int m_enemyCount;
+		int m_enemyCount;					// 敵の残り数
 	};
 }

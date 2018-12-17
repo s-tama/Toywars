@@ -23,28 +23,13 @@ using namespace DirectX::SimpleMath;
 
 
 
-// 静的メンバ変数の定義 -------------------------------------------------------
-std::unique_ptr<EnemyAttack> EnemyAttack::m_pInstance = nullptr;
-
-
-
 // メンバ関数の定義 -----------------------------------------------------------
 /// <summary>
 /// コンストラクタ
 /// </summary>
-EnemyAttack::EnemyAttack()
+EnemyAttack::EnemyAttack(AI* pAI):
+	EnemyStrategy(pAI)
 {
-}
-
-/// <summary>
-/// クラスのインスタンスを取得する
-/// </summary>
-/// <returns>インスタンス</returns>
-EnemyAttack* EnemyAttack::GetInstance()
-{
-	if (m_pInstance == nullptr)
-		m_pInstance.reset(new EnemyAttack);
-	return m_pInstance.get();
 }
 
 /// <summary>
@@ -53,7 +38,6 @@ EnemyAttack* EnemyAttack::GetInstance()
 void EnemyAttack::Execute(float elapsedTime)
 {
 	if (m_pAI == nullptr) return;
-	if (!m_pAI->GetEnemy()->IsActive()) return;
 
 	std::vector<Bullet*> pBullets = m_pAI->GetEnemy()->GetMediator()->GetBulletManager()->GetBullets();
 	const int bulletSize = pBullets.size();

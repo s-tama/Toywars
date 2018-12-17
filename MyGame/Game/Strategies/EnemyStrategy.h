@@ -21,13 +21,10 @@ namespace MyGame
 	public:
 
 		/// <summary>
-		/// 初期化処理
+		/// コンストラクタ
 		/// </summary>
-		/// <param name="pPlayer">プレイヤーへのポインタ</param>
-		virtual void Initialize(AI* pAI)
-		{
-			m_pAI = pAI;
-		}
+		/// <param name="pAI">AIアルゴリズムへのポインタ</param>
+		EnemyStrategy(AI* pAI): m_pAI(pAI){}
 
 		// 実行
 		virtual void Execute(float elapsedTime) = 0;
@@ -35,7 +32,6 @@ namespace MyGame
 
 	protected:
 
-		// プレイヤーへのポインタ
-		AI* m_pAI;
+		AI* m_pAI;		// プレイヤーへのポインタ
 	};
 }

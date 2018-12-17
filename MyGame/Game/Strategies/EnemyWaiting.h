@@ -16,25 +16,16 @@ namespace MyGame
 	/// </summary>
 	class EnemyWaiting : public EnemyStrategy
 	{
-	private:
-
-		// コンストラクタ
-		EnemyWaiting();
-
-
 	public:
 
-		// クラスのインスタンスを取得
-		static EnemyWaiting* GetInstance();
+		// コンストラクタ
+		EnemyWaiting(AI* pAI);
 
 		// 実行
 		void Execute(float elapsedTime) override;
 
 
 	private:
-
-		// インスタンス
-		static std::unique_ptr<EnemyWaiting> m_pInstance;
 	};
 }
 

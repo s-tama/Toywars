@@ -7,7 +7,6 @@
 // ヘッダーファイルのインクルード -----------------------------------------------
 #include "AI_Level0.h"
 
-#include "EnemyStrategy.h"
 #include "../GameObjects/Player.h"
 
 #include "EnemyWaiting.h"
@@ -20,6 +19,12 @@ using namespace MyLibrary;
 using namespace MyGame;
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
+
+
+
+// 静的メンバ変数の実態を定義 ---------------------------------------------------
+// 方向
+const float AI_Level0::DIRECTION[4] = { 0, 90, 180, 270 };
 
 
 
@@ -43,12 +48,8 @@ void AI_Level0::Initialize()
 	// プレイヤーオブジェクトを取得する
 	m_pTarget = m_pEnemy->GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
 
-	// 戦略リストを作成
-	EnemyWaiting::GetInstance()->Initialize(this);
-	EnemyAttack::GetInstance()->Initialize(this);
-
 	// 戦略を初期化する
-	m_pCurrentStrategy = EnemyWaiting::GetInstance();
+	m_pCurrentStrategy = new EnemyWaiting(this);
 }
 
 /// <summary>
@@ -58,31 +59,18 @@ void AI_Level0::Think(float elapsedTime)
 {
 	if (m_pEnemy == nullptr) return;
 
-	Quaternion rot = m_pEnemy->GetTransform()->GetRotation();
-	if ((m_time > 300) && (m_time < 600))
+	// 一定の行動をとる
+	Transform* pTrans = m_pEnemy->GetTransform();
+	Vector3 axis = pTrans->GetUp();
+	if (m_time % 300 == 0)
 	{
-		if (rot.y < Quaternion::CreateFromAxisAngle(m_pEnemy->GetTransform()->GetUp(), XMConvertToRadians(90)).y)
-		{
-			m_pEnemy->GetTransform()->Rotate(m_pEnemy->GetTransform()->GetUp(), 90 * elapsedTime);
-		}
+		float dir = DIRECTION[Math::GetRand(0, 4)];
+		pTrans->SetRotation(Quaternion::CreateFromAxisAngle(axis, dir));
 	}
-	else if((m_time >= 600) && (m_time < 900))
-	{
-		if (rot.y < Quaternion::CreateFromAxisAngle(m_pEnemy->GetTransform()->GetUp(), XMConvertToRadians(90)).y)
-		{
-			m_pEnemy->GetTransform()->Rotate(m_pEnemy->GetTransform()->GetUp(), 90 * elapsedTime);
-		}
-	}
-
+	
 	// 一定間隔で弾を発射する
-	if (m_time % 30 == 0)
-	{
-		ChangeStrategy(EnemyAttack::GetInstance());
-	}
-	else
-	{
-		ChangeStrategy(EnemyWaiting::GetInstance());
-	}
+	if (m_time % 30 == 0) ChangeStrategy(new EnemyAttack(this));
+	else ChangeStrategy(new EnemyWaiting(this));
 
 	// 現在の戦略を実行
 	if (m_pCurrentStrategy != nullptr)
@@ -92,7 +80,7 @@ void AI_Level0::Think(float elapsedTime)
 	
 	m_timef += elapsedTime;
 	m_time++;
-	//m_time %= 10000;
+	m_time %= 1000;
 }
 
 

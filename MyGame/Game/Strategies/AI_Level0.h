@@ -23,6 +23,12 @@ namespace MyGame
 	/// </summary>
 	class AI_Level0 : public AI
 	{
+	private:
+
+		// 方向
+		static const float DIRECTION[4];
+
+
 	public:
 
 		// コンストラクタ
@@ -37,10 +43,8 @@ namespace MyGame
 
 	private:
 
-		std::vector<EnemyStrategy*> m_pStrategyList;		// 戦略リスト
-		std::vector<EnemyStrategy*> m_pWait;				// 待機状態
 		MyLibrary::GameObject* m_pTarget;					// ターゲットへのポインタ
-		int m_time;											// タイマー
-		float m_timef;
+		int m_time;											// タイマー(int)
+		float m_timef;										// タイマー(float)
 	};
 }
