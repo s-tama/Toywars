@@ -16,6 +16,12 @@ namespace MyGame
 	/// </summary>
 	class EnemyWandering : public EnemyStrategy
 	{
+	private:
+
+		// 方向
+		static const float DIRECTION[4];
+
+
 	public:
 
 		// コンストラクタ
@@ -26,6 +32,8 @@ namespace MyGame
 
 
 	private:
+
+		int m_time;		// タイマー
 	};
 }
 

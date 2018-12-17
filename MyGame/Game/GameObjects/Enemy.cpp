@@ -35,7 +35,7 @@ const Vector3 Enemy::APPEAR_POS[8]=
 
 
 // 静的メンバ変数の定義 -------------------------------------------------------------
-const float Enemy::ADVANCE_SPEED = 24;
+const float Enemy::ADVANCE_SPEED = 12;
 const float Enemy::ROTATION_SPEED = 180;
 
 
