@@ -64,7 +64,7 @@ void AI_Level0::Think(float elapsedTime)
 	Vector3 axis = pTrans->GetUp();
 	if (m_time % 300 == 0)
 	{
-		float dir = DIRECTION[Math::GetRand(0, 4)];
+		float dir = XMConvertToRadians(DIRECTION[Math::GetRand(0, 4)]);
 		pTrans->SetRotation(Quaternion::CreateFromAxisAngle(axis, dir));
 	}
 	

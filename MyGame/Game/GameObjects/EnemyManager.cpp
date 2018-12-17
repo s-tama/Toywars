@@ -8,6 +8,7 @@
 #include "EnemyManager.h"
 
 #include "Enemy.h"
+#include "Player.h"
 #include "../Strategies/AI_Level0.h"
 
 
@@ -44,19 +45,29 @@ void EnemyManager::Initialize()
 		GetNodeManager()->AddNode(m_pEnemies[i]);
 	}
 
-	std::vector<int> already;
 	
 	for (int i = 0; i < m_pEnemies.size(); i++)
 	{
 		int num = Math::GetRand(0, 8);
-		for (int j = 0; j < already.size(); j++)
+		m_pEnemies[i]->GetTransform()->SetPosition(Enemy::APPEAR_POS[num]);
+	}
+
+	// 位置を再設定する
+	GameObject* pObj = GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	Player* pPlayer = dynamic_cast<Player*>(pObj);
+	for (auto it1 : m_pEnemies)
+	{
+		for (auto it2 : m_pEnemies)
 		{
-			if (already[j] != num)
-			{
-				m_pEnemies[i]->GetTransform()->SetPosition(Enemy::APPEAR_POS[num]);
-				already.push_back(num);
+			int num = Math::GetRand(0, 8);
+			it1->GetTransform()->SetPosition(Enemy::APPEAR_POS[num]);
+
+			if (it1->GetTransform()->GetPosition() == it2->GetTransform()->GetPosition())
 				continue;
-			}
+			if (it1->GetTransform()->GetPosition() == pPlayer->GetTransform()->GetPosition())
+				continue;
+			if (it2->GetTransform()->GetPosition() == pPlayer->GetTransform()->GetPosition())
+				continue;
 		}
 	}
 }

@@ -12,6 +12,7 @@
 namespace MyGame
 {
 	class Enemy;
+	class Mediator;
 }
 
 
