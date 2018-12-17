@@ -5,10 +5,9 @@
 
 
 // ヘッダーファイルのインクルード -----------------------------------------------
-#include "EnemyInfoUI.h"
+#include "PlayerInfoUI.h"
 
-#include "EnemyManager.h"
-#include "Enemy.h"
+#include "Player.h"
 
 
 
@@ -24,27 +23,27 @@ using namespace DirectX::SimpleMath;
 /// <summary>
 /// コンストラクタ
 /// </summary>
-EnemyInfoUI::EnemyInfoUI()
+PlayerInfoUI::PlayerInfoUI()
 {
 }
 
 /// <summary>
 /// 初期化処理
 /// </summary>
-void EnemyInfoUI::Initialize()
+void PlayerInfoUI::Initialize()
 {
 	// エネミーマネージャーの作成
-	GameObject* pObj = GetNodeManager()->GetNode()->FindGameObjectWithTag("EnemyManager");
-	m_pEnemyManager = dynamic_cast<EnemyManager*>(pObj);
+	GameObject* pObj = GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	m_pPlayer = dynamic_cast<Player*>(pObj);
 }
 
 /// <summary>
 /// 更新処理
 /// </summary>
 /// <param name="elapsedTime">経過時間</param>
-void EnemyInfoUI::Update(float elapsedTime)
+void PlayerInfoUI::Update(float elapsedTime)
 {
-	int enemyNum = m_pEnemyManager->GetEnemyCount();
-	GameText::GetInstance()->AddText(Vector2(6, 10), Colors::Black, 2.1f, L"敵の数 %d", enemyNum);
-	GameText::GetInstance()->AddText(Vector2(10, 10), Colors::White, 2, L"敵の数 %d", enemyNum);
+	int num = m_pPlayer->PossessBulletNum();
+	GameText::GetInstance()->AddText(Vector2(6, 50), Colors::Black, 2.1f, L"弾数 %d", num);
+	GameText::GetInstance()->AddText(Vector2(10, 50), Colors::White, 2, L"弾数 %d", num);
 }

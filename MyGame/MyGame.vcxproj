@@ -187,6 +187,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Game\GameObjects\Player.cpp" />
+    <ClCompile Include="Game\GameObjects\PlayerInfoUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\GameObjects\SelectButton.cpp" />
     <ClCompile Include="Game\GameObjects\Stage.cpp" />
     <ClCompile Include="Game\GameObjects\TitleLogo.cpp">
@@ -282,6 +286,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Player.h" />
+    <ClInclude Include="Game\GameObjects\PlayerInfoUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game\GameObjects\SelectButton.h" />
     <ClInclude Include="Game\GameObjects\Stage.h" />
     <ClInclude Include="Game\GameObjects\TitleLogo.h">

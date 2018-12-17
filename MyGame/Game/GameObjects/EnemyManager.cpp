@@ -70,8 +70,8 @@ void EnemyManager::Initialize()
 				continue;
 			if (it1->GetTransform()->GetPosition() == pPlayer->GetTransform()->GetPosition())
 				continue;
-			if (it2->GetTransform()->GetPosition() == pPlayer->GetTransform()->GetPosition())
-				continue;
+			/*if (it2->GetTransform()->GetPosition() == pPlayer->GetTransform()->GetPosition())
+				continue;*/
 		}
 	}
 }

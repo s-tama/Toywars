@@ -37,6 +37,7 @@ namespace MyGame
 	private:
 
 		std::vector<ItemBox*> m_pItems;		// アイテム
+		float m_time;						// タイマー
 	};
 }
 

@@ -8,6 +8,7 @@
 #include "UIManager.h"
 
 #include "EnemyInfoUI.h"
+#include "PlayerInfoUI.h"
 
 
 
@@ -33,8 +34,13 @@ UIManager::UIManager()
 /// </summary>
 void UIManager::Initialize()
 {
+	// 敵情報
 	EnemyInfoUI* pEnemyInfoUI = new EnemyInfoUI();
 	GetNodeManager()->AddNode(pEnemyInfoUI);
+
+	// プレイヤー情報
+	PlayerInfoUI* pPlayerInfoUI = new PlayerInfoUI();
+	GetNodeManager()->AddNode(pPlayerInfoUI);
 }
 
 /// <summary>

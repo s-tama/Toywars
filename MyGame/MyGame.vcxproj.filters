@@ -145,6 +145,9 @@
     <ClCompile Include="Game\Strategies\EnemyWandering.cpp">
       <Filter>Game\Strategies\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\PlayerInfoUI.cpp">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -257,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="Game\Strategies\EnemyWandering.h">
       <Filter>Game\Strategies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\PlayerInfoUI.h">
+      <Filter>Game\GameObjects\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

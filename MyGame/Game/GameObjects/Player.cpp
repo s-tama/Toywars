@@ -121,7 +121,7 @@ void MyGame::Player::OnCollisionStay(GameObject* collider)
 {
 	if (collider->GetTag() == "Bullet_Reflect")
 	{
-		collider->Destroy();
+		collider->SetActive(false);
 		m_possessBulletNum += 5;
 	}
 }

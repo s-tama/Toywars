@@ -114,8 +114,8 @@ void SampleScene::Render()
 	{
 		// シーン名を描画
 //		GameText::GetInstance()->AddText(Vector2::Zero, DirectX::Colors::Black, 2, L"さんぷるシーン");
-		GameText::GetInstance()->AddText(Vector2(434, 0), Colors::Black, 2.1f, L"フリーモード");
-		GameText::GetInstance()->AddText(Vector2(440, 0), Colors::White, 2, L"フリーモード");
+		GameText::GetInstance()->AddText(Vector2(334, 10), Colors::Black, 2.1f, L"トレーニングモード");
+		GameText::GetInstance()->AddText(Vector2(340, 10), Colors::White, 2, L"トレーニングモード");
 
 		// ノードマネージャーの描画
 		m_pNodeManager->Render();
