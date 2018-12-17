@@ -35,7 +35,7 @@ const Vector3 Enemy::APPEAR_POS[8]=
 
 
 // 静的メンバ変数の定義 -------------------------------------------------------------
-const float Enemy::ADVANCE_SPEED = 24;
+const float Enemy::ADVANCE_SPEED = 12;
 const float Enemy::ROTATION_SPEED = 180;
 
 
@@ -68,6 +68,9 @@ void Enemy::Initialize()
 	// ボックスコライダを追加
 	AddComponent<BoxCollider>();
 	GetComponent<BoxCollider>()->SetStatus(Vector3(0, 0, 0), Vector3(2, 3, 2));
+
+	// 障害物の配列を初期化
+	m_pObstacles = GetNodeManager()->GetNode()->FindGameObjectsWithTag("Obstacle");
 
 	// AIアルゴリズムを初期化する
 	m_pAI->Initialize();

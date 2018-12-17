@@ -59,6 +59,9 @@ namespace MyGame
 		// 当たっている間の処理
 		void OnCollisionStay(GameObject* collider) override;
 
+		// 障害物情報
+		std::vector<GameObject*> GetObstacles() { return m_pObstacles; }
+
 
 	private:
 
@@ -70,6 +73,7 @@ namespace MyGame
 
 		AI* m_pAI;		// AIアルゴリズム
 		Mediator* m_pMediator;							// メディエーターへのポインタ
+		std::vector<GameObject*> m_pObstacles;			// 障害物の配列
 	};
 }
 
