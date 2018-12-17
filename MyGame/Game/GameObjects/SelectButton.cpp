@@ -53,6 +53,12 @@ void SelectButton::Initialize()
 
 	// テキスト
 	AddChild(m_pText);
+
+	if (GetTag() != "TrainingButton")
+	{
+		pFrame->Color() = Colors::Black;
+		pFrame->Color().w = 0.5f;
+	}
 }
 
 /// <summary>
