@@ -68,11 +68,19 @@ void AI_Level1::Think(float elapsedTime)
 		// 向きを設定
 		float dir = XMConvertToRadians(DIRECTION[Math::GetRand(0, 4)]);
 		pTrans->SetRotation(Quaternion::CreateFromAxisAngle(axis, dir));
+		// 攻撃行動
+		ChangeStrategy(new EnemyAttack(this));
 	}
 	else
 	{
 		// 徘徊行動
 		ChangeStrategy(new EnemyWandering(this));
+	}
+
+	// 現在の戦略を実行
+	if (m_pCurrentStrategy != nullptr)
+	{
+		m_pCurrentStrategy->Execute(elapsedTime);
 	}
 
 	m_timef += elapsedTime;
