@@ -32,6 +32,11 @@ namespace MyGame
 		void Update(float elapsedTime) override;
 
 //		void OnCollisionStay(MyLibrary::GameObject* collider) override;
+
+
+	private:
+
+		float m_time;
 	};
 }
 

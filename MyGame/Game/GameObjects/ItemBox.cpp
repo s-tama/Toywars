@@ -36,7 +36,8 @@ const Vector3 ItemBox::APPEAR_POS[8] =
 /// <summary>
 /// コンストラクタ
 /// </summary>
-ItemBox::ItemBox()
+ItemBox::ItemBox():
+	m_time(0)
 {
 	SetTag("ItemBox");
 }
@@ -64,4 +65,7 @@ void ItemBox::Initialize()
 void ItemBox::Update(float elapsedTime)
 {
 	GetTransform()->Rotate(GetTransform()->GetUp(), 60 * elapsedTime);
+	GetTransform()->Translate(0, -sin(m_time * 2) * elapsedTime, 0);
+
+	m_time += elapsedTime;
 }
