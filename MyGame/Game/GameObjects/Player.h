@@ -65,6 +65,9 @@ namespace MyGame
 		// 障害物情報
 		std::vector<GameObject*> GetObstacles() { return m_pObstacles; }
 
+		// 所持している弾数
+		UINT& PossessBulletNum() { return m_possessBulletNum; }
+
 
 	private:
 
@@ -84,5 +87,6 @@ namespace MyGame
 		DirectX::SimpleMath::Vector3 m_velocity;		// 速度ベクトル
 		MyLibrary::Utility::Flag m_flag;				// フラグ
 		std::vector<GameObject*> m_pObstacles;			// 障害物の配列
+		UINT m_possessBulletNum;						// 所持している弾の数
 	};
 }

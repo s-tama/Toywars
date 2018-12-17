@@ -59,6 +59,8 @@ void PlayerShooting::Execute(float elapsedTime)
 	m_shootInterval %= SHOOT_INTERVAL;
 	/*if (m_shootInterval % SHOOT_INTERVAL == 0)
 	{*/
+	if (m_pPlayer->PossessBulletNum() > 0)
+	{
 		std::vector<Bullet*> pBullets = m_pPlayer->GetMediator()->GetBulletManager()->GetBullets();
 		const int bulletSize = pBullets.size();
 		for (int i = 0; i < bulletSize; i++)
@@ -75,9 +77,12 @@ void PlayerShooting::Execute(float elapsedTime)
 				pBullets[i]->SetOwner(m_pPlayer);
 				// 弾を「アクティブ」状態にする
 				pBullets[i]->SetActive(true);
+				// 所持弾数を減らす
+				m_pPlayer->PossessBulletNum()--;
 				break;
 			}
 		}
+	}
 	//}
 
 	// プレイヤーの戦略を「無し」に変更

@@ -37,7 +37,8 @@ const float Player::ROTATION_SPEED = 180;
 Player::Player():
 	m_pCurrentState(nullptr),
 	m_velocity(Vector3::Zero),
-	m_pMediator(nullptr)
+	m_pMediator(nullptr),
+	m_possessBulletNum(0)
 {
 	SetTag("Player");	// タグを設定
 }
@@ -121,6 +122,7 @@ void MyGame::Player::OnCollisionStay(GameObject* collider)
 	if (collider->GetTag() == "Bullet_Reflect")
 	{
 		collider->Destroy();
+		m_possessBulletNum += 5;
 	}
 }
 
