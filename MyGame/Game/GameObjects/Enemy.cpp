@@ -69,6 +69,9 @@ void Enemy::Initialize()
 	AddComponent<BoxCollider>();
 	GetComponent<BoxCollider>()->SetStatus(Vector3(0, 0, 0), Vector3(2, 3, 2));
 
+	// 障害物の配列を初期化
+	m_pObstacles = GetNodeManager()->GetNode()->FindGameObjectsWithTag("Obstacle");
+
 	// AIアルゴリズムを初期化する
 	m_pAI->Initialize();
 }
