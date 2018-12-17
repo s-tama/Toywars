@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="MyLibrary.h" />
+    <ClInclude Include="Common\DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\StepTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Framework.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Node\Node.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\BoxCollider.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Collider.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Rigidbody.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SphereCollider.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SpriteRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Transform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\DebugText.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\Sprite.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\Texture.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\TextureLoader.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\TextureRepository.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Model3D.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\ModelLoader.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\ModelRepository.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Obj3D.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Sphere.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="System\InputDevice.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\Collision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\CollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Flag.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneBase.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Node\NodeManager.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor\Visitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor\TagVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor\ObjectStructure.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\GameText.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Cube.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{f22b59c8-df36-4e79-adf6-f4bac2e0df04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{03a4be47-9a1b-4169-a25f-33d9718c7fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node">
+      <UniqueIdentifier>{de802977-0e27-40d3-956d-e6d726711156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{5900f5b6-1abb-4db4-a241-5e89eb2d1e58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{0f0ab95f-e5df-4646-b609-9ef335c7db29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3D">
+      <UniqueIdentifier>{d6c0d25a-15bb-4566-8af1-e1bcee2b9858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2D">
+      <UniqueIdentifier>{25a9e49c-86fa-4516-b51b-4ba801ded5e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{d8d21fe3-1341-43d7-92f5-9344b355f330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{d4f1f5d0-5eb4-4dc4-ad30-18c121bf9726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{9cfe33b3-d8c7-455b-b9cd-ce7d5e6e58a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{1f663418-bc68-42e1-a0bb-d32d989c7864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{68688d01-7d88-4c2c-a369-47c8710dd132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{01d87f7b-f81e-4e4b-bb70-bee216d3bea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visitor">
+      <UniqueIdentifier>{61b51684-64c5-41e5-9377-d710f0e373fc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\DeviceResources.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Framework.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Node\Node.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\BoxCollider.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Collider.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Rigidbody.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SphereCollider.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SpriteRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Transform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="2D\DebugText.cpp">
+      <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="2D\Sprite.cpp">
+      <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="2D\TextureLoader.cpp">
+      <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="2D\TextureRepository.cpp">
+      <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\ModelLoader.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\ModelRepository.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\Obj3D.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\Sphere.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="System\InputDevice.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\Collision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\CollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneBase.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Node\NodeManager.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Visitor\TagVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="2D\GameText.cpp">
+      <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\Cube.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

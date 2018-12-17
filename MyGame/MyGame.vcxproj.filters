@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{8ef94316-1fb2-40a1-b61d-d33f285b6443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{32d8b102-8723-43ec-80ab-c6d19a86a5a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Icon">
+      <UniqueIdentifier>{2972b342-d6d5-48fe-8b63-298beb0bc557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FBX">
+      <UniqueIdentifier>{d60f408b-3049-4744-ae06-be4ebcb20d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes">
+      <UniqueIdentifier>{acf7a4f4-95ca-4bc2-8287-ec5bf527273d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects">
+      <UniqueIdentifier>{87cfeab3-0040-47d9-8333-5ce5a2b9d4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\States">
+      <UniqueIdentifier>{3e9c24c8-4570-496c-b0a8-1b71e2e340f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects\GameWorld">
+      <UniqueIdentifier>{32d8e706-5fd8-465a-8a14-04fe3c581c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Strategies">
+      <UniqueIdentifier>{1731bcb7-421b-4ba6-9a69-dda8027467c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\States\Player">
+      <UniqueIdentifier>{92148a94-b933-42d9-8d7f-c8a673d3a111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Strategies\Player">
+      <UniqueIdentifier>{bf261d2e-aaf9-4274-a2aa-f9a7f7a6fdfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects\UI">
+      <UniqueIdentifier>{e07f2f9f-280f-4942-9681-a38b2c86d387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behavior">
+      <UniqueIdentifier>{fd1c038e-025e-4175-ba17-ccb09b79e156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Strategies\Enemy">
+      <UniqueIdentifier>{ce34e3c5-c83c-47ca-8a69-b369c564df2a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\SampleScene.cpp">
+      <Filter>Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\GameWorld.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Player.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Stage.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ToyBox.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\MainCamera.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\TitleScene.cpp">
+      <Filter>Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Bullet.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\BulletFactory.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\BulletManager.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Mediator.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\PlayerMoving.cpp">
+      <Filter>Game\States\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\PlayerStanding.cpp">
+      <Filter>Game\States\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Strategies\PlayerNone.cpp">
+      <Filter>Game\Strategies\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Strategies\PlayerShooting.cpp">
+      <Filter>Game\Strategies\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Obstacle.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\SelectButton.cpp">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Background.cpp">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ButtonManager.cpp">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\TitleLogo.cpp">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Behavior\EnemyBehavior.cpp">
+      <Filter>Game\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Enemy.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EnemyManager.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Strategies\AI_Level0.cpp">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Strategies\EnemyWaiting.cpp">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Strategies\EnemyAttack.cpp">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ItemBox.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ItemManager.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EnemyInfoUI.cpp">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\UIManager.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\SampleScene.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameWorld.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Player.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Stage.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ToyBox.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\MainCamera.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\TitleScene.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Bullet.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\BulletFactory.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\BulletManager.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Mediator.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\PlayerMoving.h">
+      <Filter>Game\States\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\PlayerStanding.h">
+      <Filter>Game\States\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\PlayerState.h">
+      <Filter>Game\States\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\PlayerNone.h">
+      <Filter>Game\Strategies\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\PlayerShooting.h">
+      <Filter>Game\Strategies\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\PlayerStrategy.h">
+      <Filter>Game\Strategies\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Obstacle.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\SelectButton.h">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Background.h">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ButtonManager.h">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\TitleLogo.h">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Behavior\EnemyBehavior.h">
+      <Filter>Game\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\EnemyStrategy.h">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Enemy.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EnemyManager.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\AI.h">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\AI_Level0.h">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\EnemyWaiting.h">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Strategies\EnemyAttack.h">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ItemBox.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ItemManager.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EnemyInfoUI.h">
+      <Filter>Game\GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\UIManager.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MeshContentTask Include="FBX\sample.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Room.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Robot.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Robot_Body.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Robot_Screw.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\ToyBox.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Marble.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Robot_Arm.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Robot_Face.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Robot_Leg.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\RedBox.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\ItemBox.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+  </ItemGroup>
+</Project>
