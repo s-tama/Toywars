@@ -26,6 +26,7 @@ using namespace DirectX::SimpleMath;
 /// </summary>
 BulletManager::BulletManager()
 {
+	SetTag("BulletManager");
 }
 
 /// <summary>
@@ -37,7 +38,7 @@ void BulletManager::Initialize()
 	// 弾工場
 	BulletFactory bulletFactory;
 	// 弾工場を初期化する
-	bulletFactory.Initialize(GetNodeManager());
+	bulletFactory.Initialize();
 
 	// 弾工場で生成された弾オブジェクトを配列に格納
 	for (int i = 0; i < BulletFactory::NUM_BULLETS; i++)
@@ -77,15 +78,36 @@ void BulletManager::Update(float elapsedTime)
 			bullets->SetOwner(nullptr);
 			// ヒットフラグをオフにする
 			bullets->GetFlag().Off(bullets->IS_HIT_OBSTACLE);
+			// 反射フラグをオフにする
+			bullets->GetFlag().Off(bullets->IS_REFLECT);
 		}
 	}
+}
+
+/// <summary>
+/// 弾を取得する
+/// </summary>
+/// <param name="i">要素番号</param>
+/// <returns></returns>
+inline Bullet* BulletManager::GetBullet(int i) const
+{
+	return m_pBulletArray[i];
+}
+
+/// <summary>
+/// 弾数を数える
+/// </summary>
+/// <returns></returns>
+int BulletManager::BulletCount() const
+{
+	return m_pBulletArray.size();
 }
 
 /// <summary>
 /// 弾の配列を取得する
 /// </summary>
 /// <returns></returns>
-std::vector<Bullet*> BulletManager::GetBullets()
+std::vector<Bullet*> BulletManager::GetBullets() const
 {
 	return m_pBulletArray;
 }

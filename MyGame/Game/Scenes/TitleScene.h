@@ -35,6 +35,11 @@ namespace MyGame
 		// 終了処理
 		void Finalize()					override;
 
+		// 作成処理
+		void Create();
+		void CreateGameObject();
+		void CreateUI();
+
 		// フラグへの参照
 		MyLibrary::Utility::Flag& Flag() { return m_flag; }
 
@@ -49,5 +54,8 @@ namespace MyGame
 
 		// 次のシーンへのカウント
 		float m_nextSceneCount;
+
+		// FPSカウンター
+		MyLibrary::Utility::FPSCounter m_fpsCounter;
 	};
 }

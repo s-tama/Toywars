@@ -43,6 +43,12 @@
     <Filter Include="Game\Strategies\Enemy">
       <UniqueIdentifier>{ce34e3c5-c83c-47ca-8a69-b369c564df2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\GameObjects\Effect">
+      <UniqueIdentifier>{362ebcfe-90d7-464f-a484-162a7521ba83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects\Camera">
+      <UniqueIdentifier>{2a43cbdc-9486-41b8-9acc-39a312beea19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp" />
@@ -63,9 +69,6 @@
     </ClCompile>
     <ClCompile Include="Game\GameObjects\ToyBox.cpp">
       <Filter>Game\GameObjects\GameWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\GameObjects\MainCamera.cpp">
-      <Filter>Game\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Game\Scenes\TitleScene.cpp">
       <Filter>Game\Scenes</Filter>
@@ -148,6 +151,42 @@
     <ClCompile Include="Game\GameObjects\PlayerInfoUI.cpp">
       <Filter>Game\GameObjects\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Strategies\AI.cpp">
+      <Filter>Game\Strategies\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Mark.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\TrainingScene.cpp">
+      <Filter>Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\BreakEffect.cpp">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\TestScene.cpp">
+      <Filter>Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EffectBase.cpp">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EffectFactory.cpp">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EffectManager.cpp">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\MainCamera.cpp">
+      <Filter>Game\GameObjects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\TitleCamera.cpp">
+      <Filter>Game\GameObjects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Robot.cpp">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\PoppingEffect.cpp">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -167,9 +206,6 @@
     </ClInclude>
     <ClInclude Include="Game\GameObjects\ToyBox.h">
       <Filter>Game\GameObjects\GameWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameObjects\MainCamera.h">
-      <Filter>Game\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Game\Scenes\TitleScene.h">
       <Filter>Game\Scenes</Filter>
@@ -264,6 +300,39 @@
     <ClInclude Include="Game\GameObjects\PlayerInfoUI.h">
       <Filter>Game\GameObjects\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Game\GameObjects\Mark.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\TrainingScene.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\BreakEffect.h">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\TestScene.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EffectBase.h">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EffectFactory.h">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EffectManager.h">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\MainCamera.h">
+      <Filter>Game\GameObjects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\TitleCamera.h">
+      <Filter>Game\GameObjects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Robot.h">
+      <Filter>Game\GameObjects\GameWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\PoppingEffect.h">
+      <Filter>Game\GameObjects\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="FBX\sample.FBX">
@@ -300,6 +369,9 @@
       <Filter>FBX</Filter>
     </MeshContentTask>
     <MeshContentTask Include="FBX\ItemBox.FBX">
+      <Filter>FBX</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Mark.FBX">
       <Filter>FBX</Filter>
     </MeshContentTask>
   </ItemGroup>

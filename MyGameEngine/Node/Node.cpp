@@ -6,8 +6,10 @@
 
 // ヘッダーファイルのインクルード --------------------------------------------------------------- 
 #include "Node.h"
+
 #include "../Common/DeviceResources.h"
 #include "../GameObject/GameObject.h"
+#include "../2D/SpriteRenderer.h"
 
 
 
@@ -25,10 +27,10 @@ Node::Node()
 {
 	// デバイスコンテキスト
 	ID3D11DeviceContext* pContext = DeviceResources::GetInstance()->GetD3DDeviceContext();
-	// スプライトバッチの作成
-	m_pSpriteBatch = std::make_unique<SpriteBatch>(pContext);
 	// 全オブジェクトをアクティブ状態にする
-	m_stateFlag.On(IS_ACTIVE);
+	m_flag.On(IS_ACTIVE);
+	// 全オブジェクトを表示状態にする
+	m_flag.On(IS_ENABLED);
 }
 
 /// <summary>
@@ -48,13 +50,10 @@ Node::~Node()
 /// 子を追加
 /// </summary>
 /// <param name="pNode">ノード</param>
-void Node::AddChild(Node* pNode)
+void Node::AddChild(GameObject* pNode)
 {
-	GameObject* pChild = dynamic_cast<GameObject*>(pNode);
-	if (pChild != nullptr)
-	{
-		pChild->GetTransform()->SetParent(dynamic_cast<GameObject*>(this));
-	}
+	pNode->GetTransform()->SetParent(dynamic_cast<GameObject*>(this));
+	pNode->Start();
 	m_pChildren.push_back(pNode);
 }
 
@@ -62,7 +61,7 @@ void Node::AddChild(Node* pNode)
 /// 子のリストを取得
 /// </summary>
 /// <returns></returns>
-std::list<Node*> Node::GetChildren()
+std::list<GameObject*>& Node::GetChildren()
 {
 	return m_pChildren;
 }
@@ -70,11 +69,11 @@ std::list<Node*> Node::GetChildren()
 /// <summary>
 /// 子の削除
 /// </summary>
-/// <param name="pNode"></param>
-void Node::Destroy()
+/// <param name="pObject"></param>
+void Node::Destroy(GameObject* pObject)
 {
-	// 削除フラグを立てる
-	m_stateFlag.On(IS_DELETED);
+	// リストから破棄する
+	pObject->m_flag.On(pObject->IS_DELETED);
 }
 
 /// <summary>
@@ -82,18 +81,14 @@ void Node::Destroy()
 /// </summary>
 void MyLibrary::Node::InitializeAll()
 {
-	// デバイスコンテキスト
-	ID3D11DeviceContext* pContext = DeviceResources::GetInstance()->GetD3DDeviceContext();
-
 	// 自信を初期化
 	Initialize();
 
 	// 子を初期化
 	for (auto children : m_pChildren)
 	{
-		children->SetNodeManager(m_pNodeManager);
 		children->InitializeAll();
-	}
+	}	
 }
 
 /// <summary>
@@ -102,23 +97,22 @@ void MyLibrary::Node::InitializeAll()
 /// <param name="elapsedTime">経過時間</param>
 void Node::UpdateAll(float elapsedTime)
 {
-	if (!m_stateFlag.Check(IS_ACTIVE)) return;
+	if (!m_flag.Check(IS_ACTIVE)) return;
 
 	// 自身の更新
 	Update(elapsedTime);
 	
 	// 子を更新
-	std::list<Node*>::iterator it = m_pChildren.begin();
+	std::list<GameObject*>::iterator it = m_pChildren.begin();
 	while (it != m_pChildren.end())
 	{
 		if ((*it) != nullptr)
 		{
 			(*it)->UpdateAll(elapsedTime);
 
-			if ((*it)->GetState((*it)->IS_DELETED))
+			if ((*it)->m_flag.Check((*it)->IS_DELETED))
 			{
 				delete (*it);
-				(*it) = nullptr;
 				it = m_pChildren.erase(it);
 			}
 			else
@@ -132,26 +126,25 @@ void Node::UpdateAll(float elapsedTime)
 /// <summary>
 /// 全てを更新
 /// </summary>
-/// <param name="elapsedTime"></param>
+/// <param name="elapsedTime">経過時間</param>
 void Node::LateUpdateAll(float elapsedTime)
 {
-	if (!m_stateFlag.Check(IS_ACTIVE)) return;
+	if (!m_flag.Check(IS_ACTIVE)) return;
 
 	// 自身の更新
 	LateUpdate(elapsedTime);
 
 	// 子を更新
-	std::list<Node*>::iterator it = m_pChildren.begin();
+	std::list<GameObject*>::iterator it = m_pChildren.begin();
 	while (it != m_pChildren.end())
 	{
 		if ((*it) != nullptr)
 		{
 			(*it)->LateUpdateAll(elapsedTime);
 
-			if ((*it)->GetState((*it)->IS_DELETED))
+			if ((*it)->m_flag.Check((*it)->IS_DELETED))
 			{
 				delete (*it);
-				(*it) = nullptr;
 				it = m_pChildren.erase(it);
 			}
 			else
@@ -167,15 +160,11 @@ void Node::LateUpdateAll(float elapsedTime)
 /// </summary>
 void Node::DrawAll()
 {
-	if (!m_stateFlag.Check(IS_ACTIVE)) return;
+	if (!m_flag.Check(IS_ACTIVE)) return;
+	if (!m_flag.Check(IS_ENABLED)) return;
 
-	// 自信を描画
+	// 描画
 	Draw();
-
-	// スプライトの描画処理
-	m_pSpriteBatch->Begin(SpriteSortMode_Deferred, DeviceResources::GetInstance()->GetCommonStates()->NonPremultiplied());
-	DrawSprite();
-	m_pSpriteBatch->End();
 
 	// 子を描画
 	for (auto children : m_pChildren)
@@ -188,22 +177,114 @@ void Node::DrawAll()
 }
 
 /// <summary>
+/// 全スプライト描画処理
+/// </summary>
+void Node::DrawSpriteAll()
+{
+	if (!m_flag.Check(IS_ACTIVE)) return;
+	if (!m_flag.Check(IS_ENABLED)) return;
+
+	DrawSprite();
+
+	for (auto children : m_pChildren)
+	{
+		if (children != nullptr)
+		{
+			children->DrawSpriteAll();
+		}
+	}
+}
+
+/// <summary>
+/// プリミティブ描画処理
+/// </summary>
+void Node::DrawPrimitiveAll()
+{
+	if (!m_flag.Check(IS_ACTIVE)) return;
+	if (!m_flag.Check(IS_ENABLED)) return;
+
+	DrawPrimitive();
+
+	for (auto children : m_pChildren)
+	{
+		if (children != nullptr)
+		{
+			children->DrawPrimitiveAll();
+		}
+	}
+}
+
+/// <summary>
+/// オブジェクトのアクティブ状態を設定する
+/// </summary>
+/// <param name="activeState"></param>
+void Node::SetActive(bool activeState)
+{
+	if (activeState == true) m_flag.On(IS_ACTIVE);
+	else m_flag.Off(IS_ACTIVE);
+}
+
+/// <summary>
+/// アクティブ状態を取得する
+/// </summary>
+bool Node::IsActive()
+{
+	return m_flag.Check(IS_ACTIVE);
+}
+
+/// <summary>
+/// 表示状態を設定する
+/// </summary>
+/// <param name="enabled"></param>
+void Node::SetEnabled(bool enabled)
+{
+	if (enabled == true) m_flag.On(IS_ENABLED);
+	else m_flag.Off(IS_ENABLED);
+}
+
+/// <summary>
+/// 表示状態を取得する
+/// </summary>
+/// <returns></returns>
+bool Node::IsEnabled()
+{
+	return m_flag.Check(IS_ENABLED);
+}
+
+/// <summary>
 /// 指定タグのついたオブジェクトを取得する
 /// </summary>
 /// <param name="tag">タグ</param>
 /// <returns>オブジェクト</returns>
 GameObject* Node::FindGameObjectWithTag(std::string tag)
 {
+	// ノードからオブジェクトを探し出す
 	for (auto children : m_pChildren)
 	{
 		if (children != nullptr)
 		{
-			if (dynamic_cast<GameObject*>(children)->GetTag() == tag)
+			GameObject* pObj = children;
+			if (pObj->GetTag() == tag)
 			{
-				return dynamic_cast<GameObject*>(children);
+				return pObj;
 			}
 		}
 	}
+
+	// 末端ノードまで再帰的に探し出す
+	for (auto children : m_pChildren)
+	{
+		if (children != nullptr)
+		{
+			GameObject* pObj = children->FindGameObjectWithTag(tag);
+			if (pObj != nullptr)
+			{
+				return pObj;
+			}
+		}
+	}
+
+	// 失敗
 	return nullptr;
 }
 
@@ -214,44 +295,30 @@ GameObject* Node::FindGameObjectWithTag(std::string tag)
 /// <returns>オブジェクト配列</returns>
 std::vector<GameObject*> Node::FindGameObjectsWithTag(std::string tag)
 {
+	// オブジェクト配列
 	std::vector<GameObject*> objs;
+
+	// ノードからオブジェクトを探し出す
 	for (auto children : m_pChildren)
 	{
 		if (children != nullptr)
 		{
-			if (dynamic_cast<GameObject*>(children)->GetTag() == tag)
+			GameObject* pObj = children;
+			if (pObj != nullptr)
 			{
-				objs.push_back(dynamic_cast<GameObject*>(children));
+				if (pObj->GetTag() == tag)
+				{
+					objs.push_back(pObj);
+				}
+
+				// 子の関数を再帰呼び出し
+				for (auto a : pObj->FindGameObjectsWithTag(tag))
+				{
+					objs.push_back(a);
+				}
 			}
 		}
 	}
+
 	return objs;
-}
-
-/// <summary>
-/// オブジェクトのアクティブ状態を設定する
-/// </summary>
-/// <param name="activeState"></param>
-void Node::SetActive(bool activeState)
-{
-	if (activeState == true) m_stateFlag.On(IS_ACTIVE);
-	else m_stateFlag.Off(IS_ACTIVE);
-}
-
-/// <summary>
-/// アクティブ状態を取得する
-/// </summary>
-bool Node::IsActive()
-{
-	return m_stateFlag.Check(IS_ACTIVE);
-}
-
-/// <summary>
-/// オブジェクトの状態を取得する
-/// </summary>
-/// <param name="state"></param>
-/// <returns></returns>
-bool Node::GetState(UCHAR state)
-{
-	return m_stateFlag.Check(state);
 }

@@ -33,10 +33,16 @@ namespace MyGame
 		// 更新処理
 		void Update(float elapsedTime) override;
 
+		// アイテムマネージャーにアイテムを登録する
+		void EntryItem(ItemBox* pItem);
+
+		// アイテム配列を取得する
+		inline std::list<ItemBox*> GetItemList();
+
 
 	private:
 
-		std::vector<ItemBox*> m_pItems;		// アイテム
+		std::list<ItemBox*> m_itemList;		// アイテムリスト
 		float m_time;						// タイマー
 	};
 }

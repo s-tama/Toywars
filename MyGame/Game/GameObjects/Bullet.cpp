@@ -59,12 +59,21 @@ void Bullet::Initialize()
 /// <param name="elapsedTime">経過時間</param>
 void Bullet::Update(float elapsedTime)
 {
+	Vector3 pos = m_pTransform->GetPosition();
 	// 通常状態の場合
 	if (m_attribute == Attribute::NORMAL)
 	{
 		// 一直線に進める
-		this->GetTransform()->Translate(0, 0, Bullet::ADVANCE_SPEED * elapsedTime);
+		m_velocity = -m_pTransform->GetForward() * ADVANCE_SPEED * elapsedTime;
+
+		/*if (m_flag.Check(IS_REFLECT))
+		{
+			m_velocity = m_pTransform->GetForward() * ADVANCE_SPEED * elapsedTime;
+		}*/
 	}
+
+	pos += m_velocity;
+	m_pTransform->SetPosition(pos);
 }
 
 /// <summary>
@@ -121,7 +130,11 @@ void Bullet::OnCollisionStay(MyLibrary::GameObject* collider)
 	if (collider->GetTag() == "Obstacle")
 	{
 		// ヒットフラグをオンにする
-		m_flag.On(IS_HIT_OBSTACLE);
+		m_pTransform->Rotate(
+			0,
+			30, 
+			0
+		);
 	}
 	if (collider->GetTag() == "Enemy")
 	{
@@ -138,6 +151,10 @@ void Bullet::OnCollisionStay(MyLibrary::GameObject* collider)
 			collider->SetActive(false);
 			m_flag.On(IS_HIT_OBSTACLE);
 		}
+	}
+	if (collider->GetTag() == "Mark")
+	{
+		m_flag.On(IS_HIT_OBSTACLE);
 	}
 
 	if (collider->GetTag() == "Bullet")

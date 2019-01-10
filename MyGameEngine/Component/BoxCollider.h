@@ -17,16 +17,13 @@ namespace MyLibrary
 		// コンストラクタ
 		BoxCollider();
 		// コピーコンストラクタ
-		BoxCollider(DirectX::SimpleMath::Vector3 center, DirectX::SimpleMath::Vector3 extents, DirectX::SimpleMath::Vector3 size);
+		BoxCollider(DirectX::SimpleMath::Vector3 center, DirectX::SimpleMath::Vector3 extents);
 
 		// 中心点の取得
 		DirectX::SimpleMath::Vector3 GetCenter() { return m_center; }
 		
 		// 広さの取得
 		DirectX::SimpleMath::Vector3 GetExtents() { return m_extents; }
-
-		// 大きさの取得
-		DirectX::SimpleMath::Vector3 GetSize() { return m_size; }
 
 		// 情報の設定
 		void SetStatus(DirectX::SimpleMath::Vector3 center, DirectX::SimpleMath::Vector3 extents)
@@ -43,8 +40,5 @@ namespace MyLibrary
 
 		// 広さ
 		DirectX::SimpleMath::Vector3 m_extents;
-
-		// 大きさ
-		DirectX::SimpleMath::Vector3 m_size;
 	};
 }

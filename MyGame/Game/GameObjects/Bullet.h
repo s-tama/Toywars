@@ -27,7 +27,8 @@ namespace MyGame
 		static const float ADVANCE_SPEED;		// 前進速度
 		static const float ROTATION_SPEED;		// 回転速度
 
-		const UCHAR IS_HIT_OBSTACLE = 1 << 7;
+		const byte IS_HIT_OBSTACLE = 1 << 7;
+		const byte IS_REFLECT = 1 << 6;
 
 
 	public:

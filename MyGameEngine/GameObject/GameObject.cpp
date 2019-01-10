@@ -22,8 +22,9 @@ using namespace MyLibrary;
 GameObject::GameObject():
 	m_tag("")
 {
-	m_pTransform = new Transform();
-	m_pTransform->SetGameObject(this);
+	AddComponent<Transform>();
+	m_pTransform = GetComponent<Transform>();
+//	m_pTransform = new Transform();
 }
 
 /// <summary>
@@ -31,6 +32,9 @@ GameObject::GameObject():
 /// </summary>
 GameObject::~GameObject()
 {
-	delete m_pTransform;
-	m_pTransform = nullptr;
+	for (auto component : m_pComponents)
+	{
+		delete component;
+		component = nullptr;
+	}
 }

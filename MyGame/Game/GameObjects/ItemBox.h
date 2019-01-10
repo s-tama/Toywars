@@ -8,6 +8,13 @@
 #include "MyLibrary.h"
 
 
+// クラスの宣言 ------------------------------------------------------------------
+namespace MyGame
+{
+	class EffectFactory;
+}
+
+
 // クラスの定義 ---------------------------------------------------------
 namespace MyGame
 {
@@ -31,12 +38,15 @@ namespace MyGame
 		// 更新処理
 		void Update(float elapsedTime) override;
 
-//		void OnCollisionStay(MyLibrary::GameObject* collider) override;
+		// 当たり判定(当たっている間)
+		void OnCollisionStay(GameObject* pCollider) override;
 
 
 	private:
 
 		float m_time;
+
+		EffectFactory* m_pEffectFactory;	// エフェクトファクトリーへのポインタ
 	};
 }
 

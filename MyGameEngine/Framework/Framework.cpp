@@ -10,6 +10,8 @@
 #include "../2D/DebugText.h"
 #include "../2D/GameText.h"
 #include "../System/InputDevice.h"
+#include "../2D/SpriteRenderer.h"
+#include "../3D/PrimitiveRenderer.h"
 
 
 
@@ -324,6 +326,11 @@ void Framework::CreateDeviceDependentResources()
 	// デバッグテキストの初期化
 	DebugText::GetInstance()->Initialize(pDevice, pContext);
 	GameText::GetInstance()->Initialize(pDevice, pContext);
+
+	// スプライトレンダラーの初期化
+	SpriteRenderer::GetInstance()->Initialize(pDevice, pContext);
+	// プリミティブレンダラーの初期化
+	PrimitiveRenderer::GetInstance()->Initialize(pDevice, pContext);
 }
 
 /// <summary>

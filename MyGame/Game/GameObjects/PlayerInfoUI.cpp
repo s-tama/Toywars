@@ -33,7 +33,7 @@ PlayerInfoUI::PlayerInfoUI()
 void PlayerInfoUI::Initialize()
 {
 	// エネミーマネージャーの作成
-	GameObject* pObj = GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	GameObject* pObj = NodeManager::FindGameObjectWithTag("Player");
 	m_pPlayer = dynamic_cast<Player*>(pObj);
 }
 
@@ -44,6 +44,6 @@ void PlayerInfoUI::Initialize()
 void PlayerInfoUI::Update(float elapsedTime)
 {
 	int num = m_pPlayer->PossessBulletNum();
-	GameText::GetInstance()->AddText(Vector2(6, 50), Colors::Black, 2.1f, L"弾数 %d", num);
-	GameText::GetInstance()->AddText(Vector2(10, 50), Colors::White, 2, L"弾数 %d", num);
+//	GameText::GetInstance()->AddText(Vector2(6, 50), Colors::Black, 2.1f, L"弾数 %d", num);
+//	GameText::GetInstance()->AddText(Vector2(10, 50), Colors::White, 2, L"弾数 %d", num);
 }

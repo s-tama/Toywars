@@ -9,6 +9,8 @@
 
 #include "Scenes/TitleScene.h"
 #include "Scenes/SampleScene.h"
+#include "Scenes/TrainingScene.h"
+#include "Scenes/TestScene.h"
 
 
 
@@ -45,9 +47,11 @@ void Game::Initialize()
 	// シーンマネージャーに追加
 	m_pSceneManager->EntryScene(new TitleScene);
 	m_pSceneManager->EntryScene(new SampleScene);
+	m_pSceneManager->EntryScene(new TrainingScene);
+	m_pSceneManager->EntryScene(new TestScene);
 
 	// 開始シーンを設定
-	m_pSceneManager->StartScene("SampleScene");
+	m_pSceneManager->StartScene("TrainingScene");
 }
 
 #pragma region ゲームループ
@@ -106,6 +110,9 @@ void Game::CreateResources()
 	pTexRepo->AddRepository(textureLoader.LoadTexture(L"background_title"));
 	pTexRepo->AddRepository(textureLoader.LoadTexture(L"toywars"));
 	pTexRepo->AddRepository(textureLoader.LoadTexture(L"frame_nowSelect"));
+	pTexRepo->AddRepository(textureLoader.LoadTexture(L"explosion"));
+	pTexRepo->AddRepository(textureLoader.LoadTexture(L"popping"));
+	pTexRepo->AddRepository(textureLoader.LoadTexture(L"sample"));
 
 	// モデルの読み込み
 	ModelLoader modelLoader;
@@ -121,4 +128,5 @@ void Game::CreateResources()
 	pModelRepo->AddRepository(modelLoader.LoadModel(L"Marble"));
 	pModelRepo->AddRepository(modelLoader.LoadModel(L"RedBox"));
 	pModelRepo->AddRepository(modelLoader.LoadModel(L"ItemBox"));
+	pModelRepo->AddRepository(modelLoader.LoadModel(L"Mark"));
 }

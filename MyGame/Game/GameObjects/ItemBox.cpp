@@ -7,6 +7,9 @@
 // ヘッダーファイルのインクルード ----------------------------------------------
 #include "ItemBox.h"
 
+#include "EffectBase.h"
+#include "EffectFactory.h"
+
 
 
 // usingディレクティブ ---------------------------------------------------------
@@ -39,7 +42,6 @@ const Vector3 ItemBox::APPEAR_POS[8] =
 ItemBox::ItemBox():
 	m_time(0)
 {
-	SetTag("ItemBox");
 }
 
 /// <summary>
@@ -55,7 +57,7 @@ void ItemBox::Initialize()
 
 	// ボックスコライダを追加
 	AddComponent<BoxCollider>();
-	GetComponent<BoxCollider>()->SetStatus(Vector3(0, 0, 0), Vector3(1, 1, 1));
+	GetComponent<BoxCollider>()->SetStatus(Vector3(0, 0, 0), Vector3(0.5f, 0.5f, 0.5f));
 }
 
 /// <summary>
@@ -68,4 +70,12 @@ void ItemBox::Update(float elapsedTime)
 	GetTransform()->Translate(0, -sin(m_time * 2) * elapsedTime, 0);
 
 	m_time += elapsedTime;
+}
+
+/// <summary>
+/// 当たり判定
+/// </summary>
+/// <param name="pCollider"></param>
+void ItemBox::OnCollisionStay(GameObject* pCollider)
+{
 }

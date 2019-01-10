@@ -9,11 +9,12 @@
 
 #include "../GameObjects/MainCamera.h"
 #include "../GameObjects/GameWorld.h"
-#include "../GameObjects/BulletManager.h"
 #include "../GameObjects/Mediator.h"
-#include "../GameObjects//EnemyManager.h"
-#include "../GameObjects/ItemManager.h"
 #include "../GameObjects/UIManager.h"
+#include "../GameObjects/Background.h"
+#include "../GameObjects/Mark.h"
+#include "../GameObjects/ItemBox.h"
+#include "../GameObjects/ItemManager.h"
 
 
 
@@ -41,46 +42,9 @@ SampleScene::SampleScene():
 /// </summary>
 void SampleScene::Initialize()
 {
-	// デバイス
-	ID3D11Device* pDevice = DeviceResources::GetInstance()->GetD3DDevice();
+	Create();	// 作成処理
 
-	// ノードマネージャーの作成
-	m_pNodeManager = new NodeManager;
-
-	// カメラの作成
-	m_pNodeManager->AddNode(new MainCamera);
-
-	// ゲームワールドの作成と初期化
-	GameWorld* pGameWorld = new GameWorld;
-	pGameWorld->Initialize(m_pNodeManager);
-
-	// バレットマネージャーの作成
-	BulletManager* pBulletManager = new BulletManager();
-	m_pNodeManager->AddNode(pBulletManager);
-
-	// エネミーマネージャーの作成
-	EnemyManager* pEnemyMnager = new EnemyManager();
-	m_pNodeManager->AddNode(pEnemyMnager);
-
-	// アイテムマネージャーの作成
-	ItemManager* pItemManager = new ItemManager();
-	m_pNodeManager->AddNode(pItemManager);
-
-	// UIマネージャーの作成
-	UIManager* pUIManager = new UIManager();
-	m_pNodeManager->AddNode(pUIManager);
-
-	// ノードマネージャーの初期化
-	m_pNodeManager->Initialize();
-
-	// コリジョンマネージャーの作成
-	m_pCollisionManager = new CollisionManager(m_pNodeManager->GetNode());
-
-	// メディエーターの作成
-	m_pMediator = new Mediator();
-	m_pMediator->SetBulletManager(pBulletManager);
-	m_pMediator->SetNodeManager(m_pNodeManager);
-	m_pMediator->Initialize();
+	m_pNodeManager->Initialize();	// ノードマネージャーの初期化
 }
 
 /// <summary>
@@ -89,6 +53,15 @@ void SampleScene::Initialize()
 /// <param name="elapsedTime">経過時間</param>
 void SampleScene::Update(float elapsedTime)
 {	
+	// fpsをカウントする
+	m_fpsCounter.Update();
+	// fpsが60を超えたら更新を開始する
+	if (m_fpsCounter.GetFrame() >= 60)
+	{
+		m_flag.On(IS_UPDATE);
+	}
+	if (!m_flag.Check(IS_UPDATE)) return;
+
 	// ノードマネージャーの更新
 	m_pNodeManager->Update(elapsedTime);
 
@@ -116,6 +89,8 @@ void SampleScene::Render()
 //		GameText::GetInstance()->AddText(Vector2::Zero, DirectX::Colors::Black, 2, L"さんぷるシーン");
 		GameText::GetInstance()->AddText(Vector2(334, 10), Colors::Black, 2.1f, L"トレーニングモード");
 		GameText::GetInstance()->AddText(Vector2(340, 10), Colors::White, 2, L"トレーニングモード");
+		GameText::GetInstance()->AddText(Vector2(0, 440), Colors::White, 2,
+			L"FPS:%d", m_fpsCounter.GetFrame());
 
 		// ノードマネージャーの描画
 		m_pNodeManager->Render();
@@ -128,6 +103,38 @@ void SampleScene::Render()
 void SampleScene::Finalize()
 {
 	// ノードマネージャーの開放
+	m_pNodeManager->Reset();
 	delete m_pNodeManager;
 	m_pNodeManager = nullptr;
+}
+
+/// <summary>
+/// 作成処理
+/// </summary>
+void SampleScene::Create()
+{
+	ID3D11Device* pDevice = DeviceResources::GetInstance()->GetD3DDevice();						// デバイス
+	ID3D11DeviceContext* pContext = DeviceResources::GetInstance()->GetD3DDeviceContext();		// デバイスコンテキスト
+
+	m_pNodeManager = new NodeManager();		// ノードマネージャー
+
+	MainCamera* pCamera = new MainCamera();		// カメラ
+	GameWorld* pGameWorld = new GameWorld();	// ゲームワールド
+	Mediator* pMadiator = new Mediator();		// メディエーター
+	UIManager* pUIManager = new UIManager();	// UIマネージャー
+	ItemBox* pItemBox = new ItemBox();			// アイテムボックス
+	ItemManager* pItemManager = new ItemManager();			// アイテムマネージャー
+	NodeManager::AddNode(pItemBox);
+	NodeManager::AddNode(pItemManager);
+
+	m_pNodeManager->AddNode(pCamera);
+	pGameWorld->Initialize();
+	m_pNodeManager->AddNode(pMadiator);
+	m_pNodeManager->AddNode(pUIManager);
+
+	m_pCollisionManager = new CollisionManager();	// コリジョンマネージャー
+
+	// マネージャーに追加する
+	pItemBox->SetTag("AddBullet5");
+	pItemManager->EntryItem(pItemBox);
 }

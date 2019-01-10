@@ -26,12 +26,9 @@ namespace MyGame
 		// 更新処理
 		void Update(float elapsedTime) override;
 
-		// スプライト情報
-		MyLibrary::Sprite* GetSprite() { return m_pSprite; }
-
 
 	private:
 
-		MyLibrary::Sprite* m_pSprite;
+		float m_angle;	// 角度
 	};
 }

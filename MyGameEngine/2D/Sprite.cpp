@@ -30,8 +30,10 @@ Sprite::Sprite():
 	m_rect{ 0, 0, 0, 0 },
 	m_anchorPoint(Vector2::Zero),
 	m_rotation(0),
-	m_scale(1)
+	m_scale(1),
+	m_pSpriteRenderer(nullptr)
 {
+	m_pSpriteRenderer = SpriteRenderer::GetInstance();
 }
 
 /// <summary>
@@ -46,8 +48,8 @@ void Sprite::DrawSprite()
 		UINT h = m_pTexture->desk.Height;
 		Vector2 offset = Vector2(static_cast<float>(w) * m_anchorPoint.x, static_cast<float>(h) * m_anchorPoint.y);
 		Vector2 pos = pParent->GetTransform()->GetPosition() + m_pTransform->GetPosition();
-		Quaternion rot = pParent->GetTransform()->GetRotation() + m_pTransform->GetRotation();
-		m_pSpriteBatch->Draw(m_pTexture->pHandle.Get(), pos - offset, &m_rect, m_color, m_rotation, Vector2::Zero, m_scale);
+//		Quaternion rot = pParent->GetTransform()->GetRotation() + m_pTransform->GetRotation();
+		m_pSpriteRenderer->Draw(m_pTexture->pHandle.Get(), pos - offset, &m_rect, m_color, m_rotation, Vector2::Zero, Vector2(m_scale, m_scale));
 	}
 }
 

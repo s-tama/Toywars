@@ -27,7 +27,7 @@ namespace MyGame
 	public:
 
 		// 弾の最大生成数
-		static const int NUM_BULLETS = 30;
+		static const int NUM_BULLETS = 10;
 
 
 	public:
@@ -36,7 +36,7 @@ namespace MyGame
 		BulletFactory();
 
 		// 初期化処理
-		void Initialize(MyLibrary::NodeManager* pNodeManager);
+		void Initialize();
 
 		// 作成処理
 		Bullet* Create(DirectX::SimpleMath::Vector3 position);
@@ -51,6 +51,5 @@ namespace MyGame
 	private:
 
 		std::vector<Bullet*> m_pBullets;		// 弾の配列
-		MyLibrary::NodeManager* m_pNodeManager;	// ノードマネージャーへのポインタ
 	};
 }

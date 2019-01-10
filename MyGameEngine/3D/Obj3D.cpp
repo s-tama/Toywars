@@ -9,8 +9,8 @@
 
 #include "Obj3D.h"
 #include "../Common/DeviceResources.h"
-#include "../Node/NodeManager.h"
 #include "../Camera/Camera.h"
+#include "../Node/NodeManager.h"
 
 
 
@@ -46,16 +46,9 @@ void Obj3D::SetModel(Model3D* pModel)
 /// </summary>
 void Obj3D::Initialize()
 {
-	GameObject* pCamera = GetNodeManager()->GetNode()->FindGameObjectWithTag("MainCamera");
+	GameObject* pCamera = NodeManager::FindGameObjectWithTag("MainCamera");
 	m_pCamera = dynamic_cast<Camera*>(pCamera);
-}
 
-/// <summary>
-/// 更新処理
-/// </summary>
-/// <param name="elapsedTime"></param>
-void Obj3D::Update(float elapsedTime)
-{
 	// ライトの設定
 	if (m_flag.Check(LIGHT) != false)
 	{
@@ -64,7 +57,7 @@ void Obj3D::Update(float elapsedTime)
 			DirectX::IEffectLights* lights = dynamic_cast<DirectX::IEffectLights*>(effect);
 			if (lights)
 			{
-				lights->SetAmbientLightColor(DirectX::SimpleMath::Vector3(1, 1, 1));    // アンビエント色を設定する
+				lights->SetAmbientLightColor(Vector3(1, 1, 1));    // アンビエント色を設定する
 				lights->SetLightEnabled(0, true);	// １番のライトON
 				lights->SetLightEnabled(1, false);	// ２番のライトOFF
 				lights->SetLightEnabled(2, false);	// ３番のライトOFF
@@ -77,6 +70,14 @@ void Obj3D::Update(float elapsedTime)
 		};
 		m_pModel->pHandle->UpdateEffects(SetLight);
 	}
+}
+
+/// <summary>
+/// 更新処理
+/// </summary>
+/// <param name="elapsedTime"></param>
+void Obj3D::Update(float elapsedTime)
+{
 }
 
 /// <summary>

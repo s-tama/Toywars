@@ -47,7 +47,7 @@ AI_Level1::AI_Level1(Enemy* pEnemy) :
 void AI_Level1::Initialize()
 {
 	// プレイヤーオブジェクトを取得する
-	m_pTarget = m_pEnemy->GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	m_pTarget = NodeManager::FindGameObjectWithTag("Player");
 
 	// 戦略を初期化する
 	m_pCurrentStrategy = new EnemyWaiting(this);

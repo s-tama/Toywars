@@ -38,6 +38,8 @@ namespace MyGame
 		// コンストラクタ
 		Player();
 
+		// 開始処理
+		void Start() override;
 		// 初期化処理
 		void Initialize() override;
 		// 更新処理
@@ -56,7 +58,6 @@ namespace MyGame
 		void OnCollisionStay(GameObject* collider) override;
 
 		// メディエーターの情報
-		void SetMediator(Mediator* pMediator) { m_pMediator = pMediator; }
 		Mediator* GetMediator() { return m_pMediator; }
 
 		// フラグ情報

@@ -10,6 +10,7 @@
 
 #include "../GameObject/GameObject.h"
 #include "Texture.h"
+#include "SpriteRenderer.h"
 
 
 
@@ -68,5 +69,8 @@ namespace MyLibrary
 
 		// スケール
 		float m_scale;
+
+		// スプライトレンダラーへのポインタ	
+		SpriteRenderer* m_pSpriteRenderer;
 	};
 }

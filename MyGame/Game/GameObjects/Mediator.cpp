@@ -8,9 +8,7 @@
 #include "Mediator.h"
 
 #include "BulletManager.h"
-#include "GameWorld.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "EffectFactory.h"
 
 
 
@@ -25,9 +23,9 @@ using namespace MyGame;
 /// コンストラクタ
 /// </summary>
 Mediator::Mediator():
-	m_pBulletManager(nullptr),
-	m_pNodeManager(nullptr)
+	m_pBulletManager(nullptr)
 {
+	SetTag("Mediator");
 }
 
 /// <summary>
@@ -35,47 +33,29 @@ Mediator::Mediator():
 /// </summary>
 void Mediator::Initialize()
 {
-	GameObject* pPlayer = m_pNodeManager->GetNode()->FindGameObjectWithTag("Player");
-	dynamic_cast<Player*>(pPlayer)->SetMediator(this);
-	std::vector<GameObject*> pEnemy = m_pNodeManager->GetNode()->FindGameObjectsWithTag("Enemy");
-	for (auto it : pEnemy)
-	{
-		dynamic_cast<Enemy*>(it)->SetMediator(this);
-	}
-}
+	// バレットマネージャーへのポインタを設定する
+	GameObject* pBulletManager = NodeManager::FindGameObjectWithTag("BulletManager");
+	m_pBulletManager = dynamic_cast<BulletManager*>(pBulletManager);
 
-/// <summary>
-/// バレットマネージャーへのポインタを設定
-/// </summary>
-/// <param name="pBulletManager">バレットマネージャーへのポインタ</param>
-void Mediator::SetBulletManager(BulletManager* pBulletManager)
-{
-	m_pBulletManager = pBulletManager;
+	// エフェクトファクトリーへのポインタを設定する
+	GameObject* pEffectFactory = NodeManager::FindGameObjectWithTag("EffectFactory");
+	m_pEffectFactory = dynamic_cast<MyGame::EffectFactory*>(pEffectFactory);
 }
 
 /// <summary>
 /// バレットマネージャーのポインタを取得
 /// </summary>
 /// <returns>バレットマネージャーへのポインタ</returns>
-BulletManager* MyGame::Mediator::GetBulletManager()
+BulletManager* MyGame::Mediator::GetBulletManager() const
 {
 	return m_pBulletManager;
 }
 
 /// <summary>
-/// ノードマネージャーへのポインタを設定
+/// エフェクトファクトリーへのポインタを取得
 /// </summary>
-/// <param name="pNodeManager">ノードマネージャーへのポインタ</param>
-void Mediator::SetNodeManager(NodeManager* pNodeManager)
+/// <returns></returns>
+EffectFactory* MyGame::Mediator::GetEffectFactory() const
 {
-	m_pNodeManager = pNodeManager;
-}
-
-/// <summary>
-/// ノードマネージャーのポインタを取得
-/// </summary>
-/// <returns>ノードマネージャーへのポインタ</returns>
-NodeManager* MyGame::Mediator::GetNodeManager()
-{
-	return m_pNodeManager;
+	return m_pEffectFactory;
 }

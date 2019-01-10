@@ -21,13 +21,12 @@ namespace MyLibrary
 	/// <summary>
 	/// コンポーネントクラス
 	/// </summary>
-	class Component : public Node
+	class Component
 	{
 	public:
 
 		// コンストラクタ
 		Component();
-
 		// 仮想デストラクタ
 		virtual ~Component();
 
@@ -39,10 +38,7 @@ namespace MyLibrary
 
 	protected:
 
-		// ゲームオブジェクトへのポインタ
-		GameObject* m_pGameObject;
-
-		// トランスフォームへのポインタ
-		Transform* m_pTransform;
+		GameObject* m_pGameObject;		// ゲームオブジェクトへのポインタ
+		Transform* m_pTransform;		// トランスフォームへのポインタ
 	};
 }

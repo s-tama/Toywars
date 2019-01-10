@@ -29,7 +29,8 @@ std::unique_ptr<PlayerMoving> PlayerMoving::m_pInstance = nullptr;
 /// コンストラクタ
 /// </summary>
 PlayerMoving::PlayerMoving() :
-	m_elapsedTime(0)
+	m_elapsedTime(0),
+	m_pScrew(nullptr)
 {
 }
 
@@ -42,6 +43,16 @@ PlayerMoving* PlayerMoving::GetInstance()
 	if (m_pInstance == nullptr)
 		m_pInstance.reset(new PlayerMoving);
 	return m_pInstance.get();
+}
+
+/// <summary>
+/// 初期化処理
+/// </summary>
+/// <param name="pPlayer">プレイヤーオブジェクトへのポインタ</param>
+void PlayerMoving::Initialize(Player* pPlayer)
+{
+	m_pPlayer = pPlayer;
+	m_pScrew = NodeManager::FindGameObjectWithTag("Screw");
 }
 
 /// <summary>
@@ -67,8 +78,7 @@ void PlayerMoving::Execute(float elapsedTime)
 	else if (isLeft)	RotationLeft();		// 左回転
 
 	// ネジを回転させる
-	GameObject* pScrew = m_pPlayer->FindGameObjectWithTag("Screw");
-	pScrew->GetTransform()->Rotate(pScrew->GetTransform()->GetForward(), 90 * elapsedTime);
+	m_pScrew->GetTransform()->Rotate(0, 0, 90 * elapsedTime);
 
 	// プレイヤーを「立ち」状態に変更
 	m_pPlayer->ChangeState(PlayerStanding::GetInstance());

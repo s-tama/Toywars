@@ -7,12 +7,15 @@
 // ヘッダーファイルのインクルード ---------------------------------------------------
 #include "Player.h"
 
+#include "Mediator.h"
+
 #include "../States/PlayerStanding.h"
 #include "../States/PlayerMoving.h"
 #include "../Strategies/PlayerNone.h"
 #include "../Strategies/PlayerShooting.h"
 
-#include <random>
+#include "EffectFactory.h"
+#include "EffectBase.h"
 
 
 
@@ -36,6 +39,7 @@ const float Player::ROTATION_SPEED = 180;
 /// </summary>
 Player::Player():
 	m_pCurrentState(nullptr),
+	m_pCurrentStrategy(nullptr),
 	m_velocity(Vector3::Zero),
 	m_pMediator(nullptr),
 	m_possessBulletNum(0)
@@ -44,12 +48,19 @@ Player::Player():
 }
 
 /// <summary>
+/// 開始処理
+/// </summary>
+void Player::Start()
+{
+	// 作成処理
+	Create();
+}
+
+/// <summary>
 /// 初期化処理
 /// </summary>
 void Player::Initialize()
 {
-	// 作成処理
-	Create();
 	// 状態を初期化する
 	InitializeState();
 	// 戦略を初期化する
@@ -73,7 +84,11 @@ void Player::Initialize()
 	m_velocity = Vector3(0, 0, ADVANCE_SPEED);
 
 	// 障害物の配列を初期化
-	m_pObstacles = GetNodeManager()->GetNode()->FindGameObjectsWithTag("Obstacle");
+	m_pObstacles = NodeManager::FindGameObjectsWithTag("Obstacle");
+
+	// メディエーターへのポインタを設定する
+	GameObject* pMediator = NodeManager::FindGameObjectWithTag("Mediator");
+	m_pMediator = dynamic_cast<Mediator*>(pMediator);
 }
 
 /// <summary>
@@ -119,8 +134,19 @@ void Player::ChangeStrategy(PlayerStrategy* pNextStrategy)
 /// <param name="collider"></param>
 void MyGame::Player::OnCollisionStay(GameObject* collider)
 {
-	if (collider->GetTag() == "Bullet_Reflect")
+	/*auto SetEffect = [&](MyGame::EffectFactory::EffectID effectID)
 	{
+		EffectBase* pEffect = m_pMediator->GetEffectFactory()->Create(effectID);
+		pEffect->GetTransform()->SetPosition(
+			collider->GetTransform()->GetPosition().x,
+			collider->GetTransform()->GetPosition().y,
+			collider->GetTransform()->GetPosition().z
+		);
+	};*/
+
+	if (collider->GetTag() == "AddBullet5")
+	{
+//		SetEffect(MyGame::EffectFactory::EffectID::POPPING);
 		collider->SetActive(false);
 		m_possessBulletNum += 5;
 	}
@@ -136,30 +162,35 @@ void Player::Create()
 	pBody->SetModel(ModelRepository::GetInstance()->GetModel(L"Robot_Body"));
 	pBody->GetTransform()->SetPosition(0, 0.5f, 0);
 	pBody->SetTag("Body");
+	pBody->SetLight(false);
 	AddChild(pBody);
 	
 	// 顔
 	Obj3D* pFace = new Obj3D;
 	pFace->SetModel(ModelRepository::GetInstance()->GetModel(L"Robot_Face"));
 	pFace->GetTransform()->SetPosition(0, 2.5f, 0);
+	pFace->SetLight(false);
 	AddChild(pFace);
 
 	// 腕
 	Obj3D* pArm = new Obj3D;
 	pArm->SetModel(ModelRepository::GetInstance()->GetModel(L"Robot_Arm"));
 	pArm->GetTransform()->SetPosition(-1.0f, 2.0f, 0);
+	pArm->SetLight(false);
 	AddChild(pArm);
 
 	// 足
 	Obj3D* pLeg = new Obj3D;
 	pLeg->SetModel(ModelRepository::GetInstance()->GetModel(L"Robot_Leg"));
 	pLeg->GetTransform()->SetPosition(0, 0, 0);
+	pLeg->SetLight(false);
 	AddChild(pLeg);
 
 	// ネジ
 	Obj3D* pScrew = new Obj3D;
 	pScrew->SetModel(ModelRepository::GetInstance()->GetModel(L"Robot_Screw"));
 	pScrew->GetTransform()->SetPosition(0, 1.85f, -0.9f);
+	pScrew->SetLight(false);
 	pScrew->SetTag("Screw");
 	AddChild(pScrew);
 }

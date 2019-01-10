@@ -30,12 +30,9 @@ namespace MyGame
 		GameWorld();
 
 		// 初期化処理
-		void Initialize(MyLibrary::NodeManager* pNodeManager);
+		void Initialize();
 
 
 	private:
-
-		// ノードマネージャー
-		MyLibrary::NodeManager* m_pNodeManager;
 	};
 }

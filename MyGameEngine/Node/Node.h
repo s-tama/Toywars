@@ -12,7 +12,6 @@
 // ヘッダーファイルのインクルード -----------------------------------------------------
 #include <d3d11.h>
 #include <SimpleMath.h>
-#include <SpriteBatch.h>
 #include <list>
 #include <vector>
 
@@ -22,7 +21,6 @@
 // クラス宣言 -------------------------------------------------------------------------
 namespace MyLibrary
 {
-	class NodeManager;
 	class GameObject;
 }
 
@@ -35,10 +33,11 @@ namespace MyLibrary
 	/// </summary>
 	class Node
 	{
-	protected:
+	private:
 
-		const UCHAR IS_DELETED = 1 << 7;	// ノードから削除予定のフラグ
-		const UCHAR IS_ACTIVE  = 1 << 6;	// アクティブ状態のフラグ
+		const byte IS_DELETED = 1 << 7;	// ノードから削除予定のフラグ
+		const byte IS_ACTIVE  = 1 << 6;	// アクティブ状態のフラグ
+		const byte IS_ENABLED = 1 << 5;	// 表示状態のフラグ
 
 
 	public:
@@ -49,71 +48,66 @@ namespace MyLibrary
 		virtual ~Node();
 
 		// 子を追加
-		void AddChild(Node* pNode);
-		// 子のリストを取得
-		std::list<Node*> GetChildren();
+		void AddChild(GameObject* pNode);
+		// ノードを取得
+		std::list<GameObject*>& GetChildren();
 
-		// 子の削除
-		void Destroy();
-		// アクティブ状態を設定する
+		// 破棄
+		void Destroy(GameObject* pObject);
+		// アクティブ状態
 		void SetActive(bool activeState);
-		// アクティブ状態を取得する
 		bool IsActive();
+		// 表示状態
+		void SetEnabled(bool enabled);
+		bool IsEnabled();
 
-		// 初期化する
+		// ノード全体を初期化する
 		void InitializeAll();
-		// 更新する
+		// ノード全体を更新する
 		void UpdateAll(float elapsedTime);
 		void LateUpdateAll(float elapsedTime);
-		// 描画する
+		// ノード全体を描画する
 		void DrawAll();
+		void DrawSpriteAll();
+		void DrawPrimitiveAll();
 
-		// ノードマネージャーの情報
-		virtual void SetNodeManager(NodeManager* pNodeManager) { m_pNodeManager = pNodeManager; }
-		virtual NodeManager* GetNodeManager() const { return m_pNodeManager; }
-
-		// タグのついたゲームオブジェクトを取得する
+		/// <summary>
+		/// オブジェクトを取得する
+		/// </summary>
 		GameObject* FindGameObjectWithTag(std::string tag);
 		std::vector<GameObject*> FindGameObjectsWithTag(std::string tag);
-
-		// オブジェクトの状態を取得する
-		bool GetState(UCHAR state);
 
 
 	private:
 
-		// 自身の初期化処理
+		// 開始処理(ノード追加時に一度だけ呼ばれる)
+		virtual void Start(){}
+
+		// 初期化処理(ノード全体の初期化時に呼ばれる)
 		virtual void Initialize(){}
 
-		// 自身の更新処理
+		// 更新処理(ノード追加後に毎フレーム呼ばれる)
 		virtual void Update(float elapsedTime){}
-		// 最後に更新する
+		// 更新処理(全ての更新処理が終了した後に呼ばれる)
 		virtual void LateUpdate(float elapsedTime){}
 
-		// 自身の描画処理
+		// 描画処理(ノード追加後に毎フレーム呼ばれる)
 		virtual void Draw(){}
-		// スプライトの描画処理
+		// 描画処理(2Dスプライト専用・ノード追加後に毎フレーム呼ばれる)
 		virtual void DrawSprite(){}
-		// 自身の終了処理
+		// 描画処理(3Dスプライト専用・ノード追加後に毎フレーム呼ばれる)
+		virtual void DrawPrimitive(){}
+
+		// 終了処理(プロジェクト終了時に一度だけ呼ばれる)
 		virtual void Finalize(){}
 
 
 	private:
 
-		// 子ノード
-		std::list<Node*> m_pChildren;
-		std::list<Node*> m_pNoneActiveChildren;
-
-		// ノードマネージャーへのポインタ
-		NodeManager* m_pNodeManager;
+		// 子ノードへのポインタリスト
+		std::list<GameObject*> m_pChildren;
 
 		// フラグ
-		Utility::Flag m_stateFlag;
-
-	
-	protected:
-
-		// スプライトバッチ
-		std::unique_ptr<DirectX::SpriteBatch> m_pSpriteBatch;
+		Utility::Flag m_flag;
 	};
 }

@@ -21,19 +21,11 @@
 #include "Math\Math.h"
 
 
-// Visitor ----------------------------------------------------------------
-#include "Visitor\Visitor.h"
-#include "Visitor\TagVisitor.h"
-#include "Visitor\ObjectStructure.h"
-
-
 // Component --------------------------------------------------------------
 #include "Component\BoxCollider.h"
 #include "Component\Collider.h"
 #include "Component\Component.h"
-#include "Component\Rigidbody.h"
 #include "Component\SphereCollider.h"
-#include "Component\SpriteRenderer.h"
 #include "Component\Transform.h"
 
 
@@ -44,6 +36,7 @@
 #include "2D\Texture.h"
 #include "2D\TextureLoader.h"
 #include "2D\TextureRepository.h"
+#include "2D\SpriteRenderer.h"
 
 
 // 3D ---------------------------------------------------------------------
@@ -53,6 +46,8 @@
 #include "3D\Obj3D.h"
 #include "3D\Sphere.h"
 #include "3D\Cube.h"
+#include "3D\Sprite3D.h"
+#include "3D\PrimitiveRenderer.h"
 
 
 // Camera -----------------------------------------------------------------
@@ -80,4 +75,5 @@
 
 // Utility ----------------------------------------------------------------
 #include "Utility\Flag.h"
+#include "Utility\FPSCounter.h"
 

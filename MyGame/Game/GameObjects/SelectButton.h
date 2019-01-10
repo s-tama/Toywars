@@ -5,6 +5,8 @@
 
 
 // ヘッダーファイルのインクルード ------------------------------------------------
+#include <functional>
+
 #include "MyLibrary.h"
 
 
@@ -21,10 +23,11 @@ namespace MyGame
 		const int IN_SPEED  = 2;		// 画面に入ってくるときのスピード
 		const int OUT_SPEED = 3;		// 画面から出ていくときのスピード
 
-		const UCHAR IS_ON		= 1 << 7;	// 押されたかのフラグ
-		const UCHAR IS_IN		= 1 << 6;	// 画面インフラグ
-		const UCHAR IS_OUT		= 1 << 5;	// 画面アウトフラグ
-		const UCHAR IS_SELECT	= 1 << 4;	// 選択されているかのフラグ
+		const byte IS_ON			= 1 << 7;	// 押されたかのフラグ
+		const byte IS_IN			= 1 << 6;	// 画面インフラグ
+		const byte IS_OUT			= 1 << 5;	// 画面アウトフラグ
+		const byte IS_SELECT		= 1 << 4;	// 選択されているかのフラグ
+		const byte IS_SELECT_ABLE	= 1 << 3;	// 選択可能かのフラグ
 
 
 	public:
@@ -42,6 +45,17 @@ namespace MyGame
 
 		// フラグへの参照
 		MyLibrary::Utility::Flag& Flag() { return m_flag; }
+
+		// 観測者の登録
+		void AttachListener(std::function<void()> Listener);
+		// ボタンが押されたことを観測者に通知
+		void OnClick();
+
+
+	private:
+
+		// イベント通知を受け取る観測者(空のラムダ式)
+		std::function<void()> Listener = [] {};
 
 
 	private:

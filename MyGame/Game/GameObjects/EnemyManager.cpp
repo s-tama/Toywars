@@ -42,7 +42,7 @@ void EnemyManager::Initialize()
 	{
 		m_pEnemies[i] = new Enemy();
 		m_pEnemies[i]->GetTransform()->SetPosition(Enemy::APPEAR_POS[Math::GetRand(0, 8)]);
-		GetNodeManager()->AddNode(m_pEnemies[i]);
+		NodeManager::AddNode(m_pEnemies[i]);
 	}
 	// 敵のAIレベルを設定
 	m_pEnemies[0]->SetAI(new AI_Level0(m_pEnemies[0]));
@@ -50,14 +50,14 @@ void EnemyManager::Initialize()
 	m_pEnemies[2]->SetAI(new AI_Level0(m_pEnemies[2]));
 
 	
-	for (int i = 0; i < m_pEnemies.size(); i++)
+	for (UINT i = 0; i < m_pEnemies.size(); i++)
 	{
 		int num = Math::GetRand(0, 8);
 		m_pEnemies[i]->GetTransform()->SetPosition(Enemy::APPEAR_POS[num]);
 	}
 
 	// 位置を再設定する
-	GameObject* pObj = GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	GameObject* pObj = NodeManager::FindGameObjectWithTag("Player");
 	Player* pPlayer = dynamic_cast<Player*>(pObj);
 	for (auto it1 : m_pEnemies)
 	{

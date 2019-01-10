@@ -34,7 +34,7 @@ EnemyInfoUI::EnemyInfoUI()
 void EnemyInfoUI::Initialize()
 {
 	// エネミーマネージャーの作成
-	GameObject* pObj = GetNodeManager()->GetNode()->FindGameObjectWithTag("EnemyManager");
+	GameObject* pObj = NodeManager::FindGameObjectWithTag("EnemyManager");
 	m_pEnemyManager = dynamic_cast<EnemyManager*>(pObj);
 }
 
@@ -45,6 +45,6 @@ void EnemyInfoUI::Initialize()
 void EnemyInfoUI::Update(float elapsedTime)
 {
 	int enemyNum = m_pEnemyManager->GetEnemyCount();
-	GameText::GetInstance()->AddText(Vector2(6, 10), Colors::Black, 2.1f, L"敵の数 %d", enemyNum);
-	GameText::GetInstance()->AddText(Vector2(10, 10), Colors::White, 2, L"敵の数 %d", enemyNum);
+//	GameText::GetInstance()->AddText(Vector2(6, 10), Colors::Black, 2.1f, L"敵の数 %d", enemyNum);
+//	GameText::GetInstance()->AddText(Vector2(10, 10), Colors::White, 2, L"敵の数 %d", enemyNum);
 }

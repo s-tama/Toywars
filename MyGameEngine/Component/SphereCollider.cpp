@@ -2,13 +2,22 @@
 // SphereCollider.cpp
 //
 
+
+
+// ヘッダーファイルのインクルード -------------------------------------------------
 #include "SphereCollider.h"
 
 #include "../GameObject/GameObject.h"
 
+
+
+// usingディレクティブ ------------------------------------------------------------
 using namespace MyLibrary;
 using namespace DirectX::SimpleMath;
 
+
+
+// メンバ関数の定義 ---------------------------------------------------------------
 /// <summary>
 /// コンストラクタ
 /// </summary>

@@ -12,6 +12,8 @@
 namespace MyGame
 {
 	class BulletManager;
+	class Obstacle;
+	class EffectFactory;
 }
 
 
@@ -21,7 +23,7 @@ namespace MyGame
 	/// <summary>
 	/// オブジェクト仲介役クラス
 	/// </summary>
-	class Mediator
+	class Mediator : public MyLibrary::GameObject
 	{
 	public:
 
@@ -29,20 +31,16 @@ namespace MyGame
 		Mediator();
 
 		// 初期化処理
-		void Initialize();
+		void Initialize() override;
 
-		// バレットマネージャーの情報
-		void SetBulletManager(BulletManager* pBulletManager);
-		BulletManager* GetBulletManager();
-
-		// ノードマネージャーの情報
-		void SetNodeManager(MyLibrary::NodeManager* pNodeManager);
-		MyLibrary::NodeManager* GetNodeManager();
+		// プロパティ
+		BulletManager* GetBulletManager() const;
+		EffectFactory* GetEffectFactory() const;
 
 
 	private:
 
-		BulletManager* m_pBulletManager;	// バレットマネージャーへのポインタ
-		MyLibrary::NodeManager* m_pNodeManager;		// ノードマネージャーへのポインタ
+		BulletManager* m_pBulletManager;			// バレットマネージャーへのポインタ
+		MyGame::EffectFactory* m_pEffectFactory;	// エフェクトファクトリーへのポインタ
 	};
 }

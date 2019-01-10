@@ -28,6 +28,8 @@ namespace MyGame
 		// コンストラクタ
 		ButtonManager();
 
+		// 開始処理
+		void Start() override;
 		// 初期化処理
 		void Initialize() override;
 		// 更新処理

@@ -25,6 +25,18 @@ namespace MyLibrary
 	{
 	public:
 
+		/// <summary>
+		/// スペース
+		/// </summary>
+		enum Space
+		{
+			WORLD,		// ワールド
+			SELF,		// 自身
+		};
+
+
+	public:
+
 		// コンストラクタ
 		Transform();
 		// デストラクタ
@@ -33,11 +45,12 @@ namespace MyLibrary
 		// 移動処理
 		void Translate(DirectX::SimpleMath::Vector3 translate);
 		void Translate(float x, float y, float z);
-		void Reflection(DirectX::SimpleMath::Vector3 reflection);
-		void Reflection(float x, float y, float z);
 		void ReflectTranslate(DirectX::SimpleMath::Vector3 translate);
 		// 回転処理
 		void Rotate(DirectX::SimpleMath::Vector3 v, float dir);
+		void Rotate(float x, float y, float z, Space space = Space::SELF);
+		// 見る
+		DirectX::SimpleMath::Matrix LookAt(DirectX::SimpleMath::Vector3& target);
 
 		// ワールド行列情報
 		void SetWorld(DirectX::SimpleMath::Matrix world) { m_world = world; }
@@ -46,8 +59,7 @@ namespace MyLibrary
 			DirectX::SimpleMath::Matrix scale = DirectX::SimpleMath::Matrix::CreateScale(m_scale);
 			DirectX::SimpleMath::Matrix rot = DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_rotation);
 			DirectX::SimpleMath::Matrix trans = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
-			m_world = scale * rot * trans;
-			return m_world;
+			return scale * rot * trans;
 		}
 
 		// 座標情報
@@ -64,6 +76,7 @@ namespace MyLibrary
 		// 回転情報
 		void SetRotation(DirectX::SimpleMath::Quaternion rotation) { m_rotation = rotation; }
 		void SetRotation(float x, float y, float z, float w) { m_rotation = DirectX::SimpleMath::Quaternion(x, y, z, w); }
+		void SetRotation(float x, float y, float z, Space space = Space::SELF);
 		DirectX::SimpleMath::Quaternion GetRotation() { return m_rotation; }
 
 		// 方向情報
@@ -81,28 +94,25 @@ namespace MyLibrary
 		void SetParent(GameObject* pParent) { m_pParent = pParent; }
 		GameObject* GetParent() { return m_pParent; }
 
+		// 子オブジェクト情報
+		void AddChild(GameObject* pChild) { m_pChidren.push_back(pChild); }
+		std::vector<GameObject*> GetChildren() { return m_pChidren; }
+		GameObject* GetChild(int index) { m_pChidren[index]; }
+
 
 	private:
 
-		// 座標
-		DirectX::SimpleMath::Vector3 m_position;
+		DirectX::SimpleMath::Vector3 m_position;		// 位置
+		DirectX::SimpleMath::Vector3 m_scale;			// スケール
+		DirectX::SimpleMath::Vector3 m_rotationWorld;	// 回転
 
-		// スケール
-		DirectX::SimpleMath::Vector3 m_scale;
+		DirectX::SimpleMath::Quaternion m_rotation;		// 回転	
 
-		// 回転
-		DirectX::SimpleMath::Quaternion m_rotation;
+		DirectX::SimpleMath::Matrix m_world;	// ワールド行列
 
-		// ワールド行列
-		DirectX::SimpleMath::Matrix m_world;
+		float m_direction;	// 方向
 
-		// 方向
-		float m_direction;
-
-		// 親オブジェクト
-		GameObject* m_pParent;
-
-		// 反射
-		DirectX::SimpleMath::Vector3 m_reflection;
+		GameObject* m_pParent;					// 親
+		std::vector<GameObject*> m_pChidren;	// 子
 	};
 }

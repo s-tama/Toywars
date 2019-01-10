@@ -46,7 +46,7 @@ AI_Level0::AI_Level0(Enemy* pEnemy):
 void AI_Level0::Initialize()
 {
 	// プレイヤーオブジェクトを取得する
-	m_pTarget = m_pEnemy->GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	m_pTarget = NodeManager::FindGameObjectWithTag("Player");
 
 	// 戦略を初期化する
 	m_pCurrentStrategy = new EnemyWaiting(this);
@@ -69,7 +69,7 @@ void AI_Level0::Think(float elapsedTime)
 	}
 	
 	// 一定間隔で弾を発射する
-	if (m_time % 30 == 0) ChangeStrategy(new EnemyAttack(this));
+	if (m_time % 60 == 0) ChangeStrategy(new EnemyAttack(this));
 	else ChangeStrategy(new EnemyWaiting(this));
 
 	// 現在の戦略を実行

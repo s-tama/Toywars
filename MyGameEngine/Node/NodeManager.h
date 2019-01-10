@@ -4,33 +4,28 @@
 #pragma once
 
 
-// ライブラリの定義 -------------------------------------------------------------------
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "DirectXTK.lib")
-
-
-// ヘッダーファイルのインクルード -----------------------------------------------------
-#include <d3d11.h>
-#include <SimpleMath.h>
-#include <SpriteBatch.h>
+// ヘッダーファイルのインクルード --------------------------------------------------
 #include <memory>
-#include <list>
 #include <string>
+#include <vector>
+
+#include "../Utility/Flag.h"
 
 
-// クラスの宣言 -----------------------------------------------------------------------
+// クラスの宣言 --------------------------------------------------------------------
 namespace MyLibrary
 {
 	class Node;
 	class GameObject;
+	class SpriteRenderer;
 }
 
 
-// クラスの定義 -----------------------------------------------------------------------
+// クラスの定義 --------------------------------------------------------------------
 namespace MyLibrary
 {
 	/// <summary>
-	/// ゲーム内ノード管理クラス
+	/// ノード管理クラス
 	/// </summary>
 	class NodeManager
 	{
@@ -38,8 +33,6 @@ namespace MyLibrary
 
 		// コンストラクタ
 		NodeManager();
-		// デストラクタ
-		~NodeManager();
 
 		// 初期化処理
 		void Initialize();
@@ -47,22 +40,26 @@ namespace MyLibrary
 		void Update(float elapsedTime);
 		// 描画処理
 		void Render();
+		// リセット
+		void Reset();
 
-		// ノードを設定する
-		void SetNode(Node* pNode);
-		// ノードに追加する
-		void AddNode(Node* pNode);
+		/// <summary>
+		/// ノード情報
+		/// </summary>
+		static void AddNode(GameObject* pObject);
+		static Node* GetNode();
 
-		// ノードから開放する
-		void RemoveNode(Node* pNode);
-
-		// ノードの取得
-		Node* GetNode();
+		/// <summary>
+		/// オブジェクトを取得する
+		/// </summary>
+		static GameObject* FindGameObjectWithTag(std::string tag);
+		static std::vector<GameObject*> FindGameObjectsWithTag(std::string tag);
 
 
 	private:
 
-		// ノードへのポインタ
-		Node* m_pNode;
+		static Node* m_pNode;		// ノードへのポインタ
+
+		SpriteRenderer* m_pSpriteRenderer;	// スプライトレンダラーへのポインタ
 	};
 }

@@ -22,26 +22,18 @@ namespace MyGame
 	public:
 
 		// コンストラクタ
-		AI(Enemy* pEnemy): m_pEnemy(pEnemy){}
+		AI(Enemy* pEnemy);
 		// 仮想デストラクタ
-		virtual ~AI(){}
-
+		virtual ~AI();
+		
 		// 初期化する
 		virtual void Initialize(){}
 
 		// 思考する
 		virtual void Think(float elapsedTime) = 0;
 
-		/// <summary>
-		/// 戦略を変更
-		/// </summary>
-		/// <param name="pNextStrategy"></param>
-		virtual void ChangeStrategy(EnemyStrategy* pNextStrategy) 
-		{
-			delete m_pCurrentStrategy;
-			m_pCurrentStrategy = nullptr;
-			m_pCurrentStrategy = pNextStrategy; 
-		}
+		// 戦略を変更
+		virtual void ChangeStrategy(EnemyStrategy* pNextStrategy);
 
 		// 敵情報を取得する
 		Enemy* GetEnemy() { return m_pEnemy; }

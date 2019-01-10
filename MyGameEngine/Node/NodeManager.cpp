@@ -4,38 +4,34 @@
 
 
 
-// ヘッダーファイルのインクルード -------------------------------------------------------
+// ヘッダーファイルのインクルード -------------------------------------------------
 #include "NodeManager.h"
 
 #include "Node.h"
 #include "../GameObject/GameObject.h"
+#include "../2D/SpriteRenderer.h"
 
 
 
-// usingディレクティブ ------------------------------------------------------------------
+// usingディレクティブ ------------------------------------------------------------
 using namespace MyLibrary;
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 
 
 
-// メンバ関数の定義 ---------------------------------------------------------------------
+// 静的メンバ変数の実態 -----------------------------------------------------------
+Node* NodeManager::m_pNode = nullptr;
+
+
+
+// メンバ関数の定義 ---------------------------------------------------------------
 /// <summary>
 /// コンストラクタ
 /// </summary>
-NodeManager::NodeManager():
-	m_pNode(nullptr)
+NodeManager::NodeManager()
 {
-	m_pNode = new Node;
-}
-
-/// <summary>
-/// デストラクタ
-/// </summary>
-NodeManager::~NodeManager()
-{
-	delete m_pNode;
-	m_pNode = nullptr;
+	m_pNode = new Node();
+	m_pSpriteRenderer = SpriteRenderer::GetInstance();
 }
 
 /// <summary>
@@ -43,7 +39,6 @@ NodeManager::~NodeManager()
 /// </summary>
 void NodeManager::Initialize()
 {
-	m_pNode->SetNodeManager(this);
 	m_pNode->InitializeAll();
 }
 
@@ -53,11 +48,8 @@ void NodeManager::Initialize()
 /// <param name="elapsedTime">経過時間</param>
 void NodeManager::Update(float elapsedTime)
 {
-	if (m_pNode != nullptr)
-	{
-		m_pNode->UpdateAll(elapsedTime);
-		m_pNode->LateUpdateAll(elapsedTime);
-	}
+	m_pNode->UpdateAll(elapsedTime);
+	m_pNode->LateUpdateAll(elapsedTime);
 }
 
 /// <summary>
@@ -65,44 +57,57 @@ void NodeManager::Update(float elapsedTime)
 /// </summary>
 void NodeManager::Render()
 {
-	if (m_pNode != nullptr)
-	{
- 		m_pNode->DrawAll();
-	}
+	m_pNode->DrawAll();
+
+	m_pNode->DrawPrimitiveAll();
+
+	m_pSpriteRenderer->Begin();
+	m_pNode->DrawSpriteAll();
+	m_pSpriteRenderer->End();
+}
+
+/// <summary>
+/// ノードをリセットする
+/// </summary>
+void NodeManager::Reset()
+{
+	delete m_pNode;
+	m_pNode = nullptr;
 }
 
 /// <summary>
 /// ノードに追加する
 /// </summary>
-/// <param name="pChildren">子ノード</param>
-void NodeManager::SetNode(Node* pNode)
+void NodeManager::AddNode(GameObject* pObject)
 {
-	m_pNode = pNode;
+	m_pNode->AddChild(pObject);
 }
 
 /// <summary>
-/// ノードに追加する
-/// </summary>
-/// <param name="pNode"></param>
-void NodeManager::AddNode(Node* pNode)
-{
-	m_pNode->AddChild(pNode);
-}
-
-/// <summary>
-/// ノードから開放する
-/// </summary>
-/// <param name="pNode"></param>
-void NodeManager::RemoveNode(Node* pNode)
-{
-	//m_pNode->Remove(pNode);
-}
-
-/// <summary>
-/// ノードマネージャーの取得
+/// ノードを取得する
 /// </summary>
 /// <returns></returns>
 Node* NodeManager::GetNode()
 {
 	return m_pNode;
+}
+
+/// <summary>
+/// 指定タグのついたオブジェクトを取得する
+/// </summary>
+/// <param name="tag">タグ</param>
+/// <returns>オブジェクト</returns>
+GameObject* NodeManager::FindGameObjectWithTag(std::string tag)
+{
+	return m_pNode->FindGameObjectWithTag(tag);
+}
+
+/// <summary>
+/// 指定タグのついたオブジェクト配列を取得する
+/// </summary>
+/// <param name="tag">タグ</param>
+/// <returns>オブジェクト配列</returns>
+std::vector<GameObject*> NodeManager::FindGameObjectsWithTag(std::string tag)
+{
+	return m_pNode->FindGameObjectsWithTag(tag);
 }

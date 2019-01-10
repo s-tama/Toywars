@@ -23,6 +23,11 @@ namespace MyGame
 	/// </summary>
 	class SampleScene : public MyLibrary::SceneBase
 	{
+	private:
+
+		const byte IS_UPDATE = 1 << 7;		// 更新を行うかのフラグ
+
+
 	public:
 
 		// コンストラクタ
@@ -37,6 +42,9 @@ namespace MyGame
 		// 終了処理
 		void Finalize()					override;
 
+		// 作成処理
+		void Create();
+
 
 	private:
 
@@ -48,5 +56,11 @@ namespace MyGame
 
 		// メディエーターへのポインタ
 		Mediator* m_pMediator;
+
+		// FPSカウンター
+		MyLibrary::Utility::FPSCounter m_fpsCounter;
+
+		// フラグ
+		MyLibrary::Utility::Flag m_flag;
 	};
 }

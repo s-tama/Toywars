@@ -26,6 +26,8 @@ SelectButton::SelectButton():
 	m_pSelect(nullptr),
 	m_count(0)
 {
+	SetTag("SelectButton");
+
 	m_pText = new Sprite;
 	m_pText->SetTexture(TextureRepository::GetInstance()->GetTexture(L"text_playMode"));
 }
@@ -54,7 +56,8 @@ void SelectButton::Initialize()
 	// テキスト
 	AddChild(m_pText);
 
-	if (GetTag() != "TrainingButton")
+	// 選択可能状態で色を変える
+	if (!m_flag.Check(IS_SELECT_ABLE))
 	{
 		pFrame->Color() = Colors::Black;
 		pFrame->Color().w = 0.5f;
@@ -92,5 +95,22 @@ void SelectButton::Update(float elapsedTime)
 	else m_pSelect->Color().w = 0;
 
 	m_count += elapsedTime;
+}
+
+/// <summary>
+/// 観測者の登録
+/// </summary>
+/// <param name="Listener">観測者</param>
+void SelectButton::AttachListener(std::function<void()> Listener)
+{
+	this->Listener = Listener;
+}
+
+/// <summary>
+/// ボタンがクリックされた
+/// </summary>
+void SelectButton::OnClick()
+{
+	Listener();
 }
 

@@ -60,7 +60,7 @@ void ModelRepository::AddRepository(Model3D* pModel)
 		{
 			// エラー表示
 			std::wstring name = L"モデル名: " + pModel->name;
-			MessageBox(0, L"モデルはすでに貯蔵庫に登録されています。", name.c_str(), MB_OK);
+			MessageBox(0, L"モデルはすでに登録されています。", name.c_str(), MB_OK);
 			return;
 		}
 	}
@@ -82,6 +82,10 @@ Model3D* ModelRepository::GetModel(std::wstring name)
 			return Models;
 		}
 	}
+
+	// エラー表示
+	std::wstring display = L"モデル名: " + name;
+	MessageBox(0, L"モデルが存在しません。", display.c_str(), MB_OK);
 	return nullptr;
 }
 

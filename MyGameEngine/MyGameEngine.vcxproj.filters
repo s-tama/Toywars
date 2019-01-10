@@ -26,13 +26,7 @@
     <ClInclude Include="Component\Component.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Rigidbody.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Component\SphereCollider.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\SpriteRenderer.h">
       <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="Component\Transform.h">
@@ -89,18 +83,6 @@
     <ClInclude Include="Math\Math.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Node\NodeManager.h">
-      <Filter>Node</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor\Visitor.h">
-      <Filter>Visitor</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor\TagVisitor.h">
-      <Filter>Visitor</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor\ObjectStructure.h">
-      <Filter>Visitor</Filter>
-    </ClInclude>
     <ClInclude Include="Camera\Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
@@ -108,6 +90,21 @@
       <Filter>2D</Filter>
     </ClInclude>
     <ClInclude Include="3D\Cube.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\FPSCounter.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Node\NodeManager.h">
+      <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="2D\SpriteRenderer.h">
+      <Filter>2D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Sprite3D.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\PrimitiveRenderer.h">
       <Filter>3D</Filter>
     </ClInclude>
   </ItemGroup>
@@ -151,9 +148,6 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{01d87f7b-f81e-4e4b-bb70-bee216d3bea3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Visitor">
-      <UniqueIdentifier>{61b51684-64c5-41e5-9377-d710f0e373fc}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -177,13 +171,7 @@
     <ClCompile Include="Component\Component.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Rigidbody.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Component\SphereCollider.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\SpriteRenderer.cpp">
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Component\Transform.cpp">
@@ -228,12 +216,6 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Node\NodeManager.cpp">
-      <Filter>Node</Filter>
-    </ClCompile>
-    <ClCompile Include="Visitor\TagVisitor.cpp">
-      <Filter>Visitor</Filter>
-    </ClCompile>
     <ClCompile Include="Camera\Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
@@ -241,6 +223,21 @@
       <Filter>2D</Filter>
     </ClCompile>
     <ClCompile Include="3D\Cube.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\FPSCounter.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Node\NodeManager.cpp">
+      <Filter>Node</Filter>
+    </ClCompile>
+    <ClCompile Include="2D\SpriteRenderer.cpp">
+      <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\Sprite3D.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\PrimitiveRenderer.cpp">
       <Filter>3D</Filter>
     </ClCompile>
   </ItemGroup>

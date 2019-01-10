@@ -37,7 +37,11 @@ namespace MyGame
 		void Update(float elapsedTime) override;
 
 		// 弾の配列を取得する
-		std::vector<Bullet*> GetBullets();
+		std::vector<Bullet*> GetBullets() const;
+		// 弾を取得する
+		inline Bullet* GetBullet(int i) const;
+		// 弾数を取得する
+		int BulletCount() const;
 
 
 	private:

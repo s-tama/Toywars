@@ -53,7 +53,6 @@ namespace MyGame
 		void SetAI(AI* pAI) { m_pAI = pAI; }
 
 		// メディエーターの情報
-		void SetMediator(Mediator* pMediator) { m_pMediator = pMediator; }
 		Mediator* GetMediator() { return m_pMediator; }
 
 		// 当たっている間の処理

@@ -29,10 +29,8 @@ BulletFactory::BulletFactory():
 /// <summary>
 /// 弾生成工場クラスを初期化する
 /// </summary>
-void BulletFactory::Initialize(NodeManager* pNodeManager)
-{
-	m_pNodeManager = pNodeManager;
-
+void BulletFactory::Initialize()
+{	
 	// 配列のサイズを設定する
 	m_pBullets.resize(NUM_BULLETS);
 
@@ -44,7 +42,7 @@ void BulletFactory::Initialize(NodeManager* pNodeManager)
 		// 弾を「使用不可」にする
 		m_pBullets[i]->SetActive(false);
 		// 弾を初期化する(ノードに追加する)
-		m_pNodeManager->AddNode(m_pBullets[i]);
+		NodeManager::AddNode(m_pBullets[i]);
 	}
 }
 

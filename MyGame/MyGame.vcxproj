@@ -155,10 +155,26 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\BreakEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\GameObjects\Bullet.cpp" />
     <ClCompile Include="Game\GameObjects\BulletFactory.cpp" />
     <ClCompile Include="Game\GameObjects\BulletManager.cpp" />
     <ClCompile Include="Game\GameObjects\ButtonManager.cpp" />
+    <ClCompile Include="Game\GameObjects\EffectBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EffectFactory.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\EffectManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\GameObjects\Enemy.cpp">
       <SubType>
       </SubType>
@@ -181,6 +197,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Game\GameObjects\MainCamera.cpp" />
+    <ClCompile Include="Game\GameObjects\Mark.cpp" />
     <ClCompile Include="Game\GameObjects\Mediator.cpp" />
     <ClCompile Include="Game\GameObjects\Obstacle.cpp">
       <SubType>
@@ -191,8 +208,20 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\PoppingEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Robot.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\GameObjects\SelectButton.cpp" />
     <ClCompile Include="Game\GameObjects\Stage.cpp" />
+    <ClCompile Include="Game\GameObjects\TitleCamera.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\GameObjects\TitleLogo.cpp">
       <SubType>
       </SubType>
@@ -203,9 +232,21 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Game\Scenes\SampleScene.cpp" />
+    <ClCompile Include="Game\Scenes\TestScene.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\Scenes\TitleScene.cpp" />
+    <ClCompile Include="Game\Scenes\TrainingScene.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\States\PlayerMoving.cpp" />
     <ClCompile Include="Game\States\PlayerStanding.cpp" />
+    <ClCompile Include="Game\Strategies\AI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Game\Strategies\AI_Level0.cpp">
       <SubType>
       </SubType>
@@ -251,10 +292,26 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Game\GameObjects\BreakEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game\GameObjects\Bullet.h" />
     <ClInclude Include="Game\GameObjects\BulletFactory.h" />
     <ClInclude Include="Game\GameObjects\BulletManager.h" />
     <ClInclude Include="Game\GameObjects\ButtonManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EffectBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EffectFactory.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\EffectManager.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -280,6 +337,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\MainCamera.h" />
+    <ClInclude Include="Game\GameObjects\Mark.h" />
     <ClInclude Include="Game\GameObjects\Mediator.h" />
     <ClInclude Include="Game\GameObjects\Obstacle.h">
       <SubType>
@@ -290,8 +348,20 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Game\GameObjects\PoppingEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Robot.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game\GameObjects\SelectButton.h" />
     <ClInclude Include="Game\GameObjects\Stage.h" />
+    <ClInclude Include="Game\GameObjects\TitleCamera.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game\GameObjects\TitleLogo.h">
       <SubType>
       </SubType>
@@ -302,7 +372,15 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Game\Scenes\SampleScene.h" />
+    <ClInclude Include="Game\Scenes\TestScene.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game\Scenes\TitleScene.h" />
+    <ClInclude Include="Game\Scenes\TrainingScene.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game\States\PlayerMoving.h" />
     <ClInclude Include="Game\States\PlayerStanding.h" />
     <ClInclude Include="Game\States\PlayerState.h" />
@@ -349,6 +427,9 @@
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
     </MeshContentTask>
     <MeshContentTask Include="FBX\Marble.FBX">
+      <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
+    </MeshContentTask>
+    <MeshContentTask Include="FBX\Mark.FBX">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
     </MeshContentTask>
     <MeshContentTask Include="FBX\RedBox.FBX">

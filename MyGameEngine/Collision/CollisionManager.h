@@ -27,7 +27,7 @@ namespace MyLibrary
 	public:
 
 		// コンストラクタ
-		CollisionManager(Node*);
+		CollisionManager();
 
 		// 更新
 		void Update(float);
@@ -36,16 +36,10 @@ namespace MyLibrary
 	private:
 
 		// 当たった時の処理
-		void OnCollisionSphere(Node*, Node*);
-		void OnCollisionBox(Node*, Node*);
+		void OnCollisionSphere(GameObject*, GameObject*);
+		void OnCollisionBox(GameObject*, GameObject*);
 
 
 	private:
-
-		// ノードポインタ
-		Node* m_pNode;
-
-		// 当たり判定に使うオブジェクト
-		std::list<GameObject*> m_pObject[2];
 	};
 }

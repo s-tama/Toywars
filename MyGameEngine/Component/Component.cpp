@@ -39,10 +39,6 @@ Component::~Component()
 /// <returns></returns>
 GameObject* Component::GetGameObject()
 {
-	if (m_pGameObject != nullptr)
-	{
-		return m_pGameObject;
-	}
 	return m_pGameObject;
 }
 

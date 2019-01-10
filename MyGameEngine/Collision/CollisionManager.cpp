@@ -11,6 +11,7 @@
 #include "../GameObject/GameObject.h"
 #include "../Component/SphereCollider.h"
 #include "../Component/BoxCollider.h"
+#include "../Node/NodeManager.h"
 
 
 
@@ -24,14 +25,8 @@ using namespace MyLibrary;
 /// コンストラクタ
 /// </summary>
 /// <param name="pNode"></param>
-CollisionManager::CollisionManager(Node* pNode)
-	: m_pNode(pNode)
+CollisionManager::CollisionManager()
 {
-	for (auto children : m_pNode->GetChildren())
-	{
-		//m_pObject[0].push_back(dynamic_cast<GameObject*>(children));
-		//m_pObject[1].push_back(dynamic_cast<GameObject*>(children));
-	}
 }
 
 /// <summary>
@@ -40,24 +35,20 @@ CollisionManager::CollisionManager(Node* pNode)
 /// <param name="elapsedTime">経過時間</param>
 void CollisionManager::Update(float elapsedTime)
 {
-	for (auto children1 : m_pNode->GetChildren())
+	for (auto children1 : NodeManager::GetNode()->GetChildren())
 	{
-		GameObject* pObj1 = dynamic_cast<GameObject*>(children1);
-
-		if (pObj1->IsActive())
+		if (children1->IsActive())
 		{
-			SphereCollider* pC1 = pObj1->GetComponent<SphereCollider>();
-			BoxCollider* pB1 = pObj1->GetComponent<BoxCollider>();
+			SphereCollider* pC1 = children1->GetComponent<SphereCollider>();
+			BoxCollider* pB1 = children1->GetComponent<BoxCollider>();
 
-			for (auto children2 : m_pNode->GetChildren())
+			for (auto children2 : NodeManager::GetNode()->GetChildren())
 			{
-				GameObject* pObj2 = dynamic_cast<GameObject*>(children2);
-
-				if (pObj2->IsActive())
+				if (children2->IsActive())
 				{
 					if (pC1 != nullptr)
 					{
-						SphereCollider* pC2 = pObj2->GetComponent<SphereCollider>();
+						SphereCollider* pC2 = children2->GetComponent<SphereCollider>();
 						if (pC2 != nullptr)
 						{
 							// 当たった時の処理
@@ -66,7 +57,7 @@ void CollisionManager::Update(float elapsedTime)
 					}
 					if (pB1 != nullptr)
 					{
-						BoxCollider* pB2 = pObj2->GetComponent<BoxCollider>();
+						BoxCollider* pB2 = children2->GetComponent<BoxCollider>();
 						if (pB2 != nullptr)
 						{
 							// 当たった時の処理
@@ -84,24 +75,20 @@ void CollisionManager::Update(float elapsedTime)
 /// </summary>
 /// <param name="pChildren1"></param>
 /// <param name="pChildren2"></param>
-void CollisionManager::OnCollisionBox(Node* pChildren1, Node* pChildren2)
+void CollisionManager::OnCollisionBox(GameObject* pChildren1, GameObject* pChildren2)
 {
-	// オブジェクト
-	GameObject* c1 = dynamic_cast<GameObject*>(pChildren1);
-	GameObject* c2 = dynamic_cast<GameObject*>(pChildren2);
-
-	if (c1 != c2)
+	if (pChildren1 != pChildren2)
 	{
 		// 球
-		BoxCollider* box1 = c1->GetComponent<BoxCollider>();
-		BoxCollider* box2 = c2->GetComponent<BoxCollider>();
+		BoxCollider* box1 = pChildren1->GetComponent<BoxCollider>();
+		BoxCollider* box2 = pChildren2->GetComponent<BoxCollider>();
 
 		// 当たったかの処理
 		const bool hit = Collision::Box2Box(box1, box2);
 		if (hit)
 		{
 			// 当たっているときの処理
-			c1->OnCollisionStay(c2);
+			pChildren1->OnCollisionStay(pChildren2);
 		}
 	}
 }
@@ -111,24 +98,20 @@ void CollisionManager::OnCollisionBox(Node* pChildren1, Node* pChildren2)
 /// </summary>
 /// <param name="pChildren1"></param>
 /// <param name="pChildren2"></param>
-void CollisionManager::OnCollisionSphere(Node* pChildren1, Node* pChildren2)
+void CollisionManager::OnCollisionSphere(GameObject* pChildren1, GameObject* pChildren2)
 {
-	// オブジェクト
-	GameObject* c1 = dynamic_cast<GameObject*>(pChildren1);
-	GameObject* c2 = dynamic_cast<GameObject*>(pChildren2);
-
-	if (c1 != c2)
+	if (pChildren1 != pChildren2)
 	{
 		// 球
-		SphereCollider* sphere1 = c1->GetComponent<SphereCollider>();
-		SphereCollider* sphere2 = c2->GetComponent<SphereCollider>();
+		SphereCollider* sphere1 = pChildren1->GetComponent<SphereCollider>();
+		SphereCollider* sphere2 = pChildren2->GetComponent<SphereCollider>();
 
 		// 当たったかの処理
 		const bool hit = Collision::Sphere2Sphere(sphere1, sphere2);
 		if (hit)
 		{
 			// 当たっているときの処理
-			c1->OnCollisionStay(c2);
+			pChildren1->OnCollisionStay(pChildren2);
 		}
 	}
 }

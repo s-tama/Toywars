@@ -70,12 +70,12 @@ void TitleLogo::Update(float elapsedTime)
 		GetTransform()->SetPosition(pos);
 	}
 	// スペースキーインプット
-	const bool isSpace = (System::InputDevice::GetInstance()->GetKeyTracker().IsKeyPressed(Keyboard::Keys::Space));
-	if (isSpace)
-	{
-		// 「画面イン」フラグをオフにする
-		m_flag.Off(IS_IN);
-		// 「画面アウト」フラグをオンにする
-		m_flag.On(IS_OUT);
-	}
+	//const bool isSpace = (System::InputDevice::GetInstance()->GetKeyTracker().IsKeyPressed(Keyboard::Keys::Space));
+	//if (isSpace)
+	//{
+	//	// 「画面イン」フラグをオフにする
+	//	m_flag.Off(IS_IN);
+	//	// 「画面アウト」フラグをオンにする
+	//	m_flag.On(IS_OUT);
+	//}
 }

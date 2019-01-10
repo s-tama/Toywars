@@ -36,11 +36,11 @@ void UIManager::Initialize()
 {
 	// 敵情報
 	EnemyInfoUI* pEnemyInfoUI = new EnemyInfoUI();
-	GetNodeManager()->AddNode(pEnemyInfoUI);
+	NodeManager::AddNode(pEnemyInfoUI);
 
 	// プレイヤー情報
 	PlayerInfoUI* pPlayerInfoUI = new PlayerInfoUI();
-	GetNodeManager()->AddNode(pPlayerInfoUI);
+	NodeManager::AddNode(pPlayerInfoUI);
 }
 
 /// <summary>

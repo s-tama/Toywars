@@ -34,11 +34,7 @@ ItemManager::ItemManager():
 /// </summary>
 void ItemManager::Initialize()
 {
-	ItemBox* pReflect = new ItemBox();
-	pReflect->SetTag("Bullet_Reflect");
-	pReflect->GetTransform()->SetPosition(ItemBox::APPEAR_POS[Math::GetRand(8)]);
-	GetNodeManager()->AddNode(pReflect);
-	m_pItems.push_back(pReflect);
+
 }
 
 /// <summary>
@@ -47,7 +43,7 @@ void ItemManager::Initialize()
 /// <param name="elapsedTime">経過時間</param>
 void ItemManager::Update(float elapsedTime)
 {
-	for (auto it : m_pItems)
+	for (auto it : m_itemList)
 	{
 		if (it->IsActive() == false)
 		{
@@ -64,4 +60,23 @@ void ItemManager::Update(float elapsedTime)
 			m_time += elapsedTime;
 		}
 	}
+}
+
+/// <summary>
+/// アイテムマネージャーにアイテムを登録する
+/// </summary>
+/// <param name="pItem">アイテムオブジェクトへのポインタ</param>
+void ItemManager::EntryItem(ItemBox* pItem)
+{
+	pItem->GetTransform()->SetPosition(ItemBox::APPEAR_POS[Math::GetRand(8)]);
+	m_itemList.push_back(pItem);
+}
+
+/// <summary>
+/// アイテムリストを取得する
+/// </summary>
+/// <returns></returns>
+inline std::list<ItemBox*> ItemManager::GetItemList()
+{
+	return m_itemList;
 }

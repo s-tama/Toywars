@@ -6,6 +6,7 @@
 
 // ヘッダーファイルのインクルード -----------------------------------------------
 #include "Background.h"
+#include <math.h>
 
 
 
@@ -22,9 +23,8 @@ using namespace DirectX::SimpleMath;
 /// コンストラクタ
 /// </summary>
 Background::Background():
-	m_pSprite(nullptr)
+	m_angle(0.f)
 {
-	m_pSprite = new Sprite();
 }
 
 /// <summary>
@@ -32,7 +32,15 @@ Background::Background():
 /// </summary>
 void Background::Initialize()
 {
-	AddChild(m_pSprite);
+	Sprite3D* pSprite = new Sprite3D();
+	pSprite->SetTexture(TextureRepository::GetInstance()->GetTexture(L"background_title"));
+	pSprite->AutoSize();
+//	pSprite->Scale() = Vector2(6, 6);
+	AddChild(pSprite);
+
+	m_pTransform->SetScale(6);
+	m_pTransform->SetPosition(2, 0, 0);
+	m_pTransform->SetRotation(0, 0, 0);
 }
 
 /// <summary>
@@ -41,4 +49,8 @@ void Background::Initialize()
 /// <param name="elapsedTime">経過時間</param>
 void Background::Update(float elapsedTime)
 {
+	Vector3 rot = Vector3(0, m_angle, 0);
+	rot = XMVectorLerp(rot, Vector3(0, -30, 0), elapsedTime);
+	m_angle = rot.y;
+	m_pTransform->SetRotation(0, m_angle, 0);
 }

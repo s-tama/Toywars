@@ -50,11 +50,14 @@ MainCamera::MainCamera():
 void MainCamera::Initialize()
 {
 	// 追従ターゲットを設定
-	GameObject* pPlayer = GetNodeManager()->GetNode()->FindGameObjectWithTag("Player");
+	GameObject* pPlayer = NodeManager::FindGameObjectWithTag("Player");
 	//GameObject* pBody = pPlayer->FindGameObjectWithTag("Body");
-	m_pTarget = pPlayer->GetTransform();
+	if (pPlayer != nullptr)
+		m_pTarget = pPlayer->GetTransform();
 	// 座標を設定
 	m_pTransform->SetPosition(0, 3, -10);
+
+	m_view = Matrix::CreateLookAt(m_pTransform->GetPosition(), Vector3::Zero, m_pTransform->GetUp());
 }
 
 /// <summary>
@@ -67,6 +70,7 @@ void MainCamera::LateUpdate(float elapsedTime)
 
 	// 位置
 	Vector3 eye = m_pTransform->GetPosition();
+
 	// 注視点
 	Vector3 lookAt((m_pTarget)->GetPosition().x, (m_pTarget)->GetPosition().y + 4, (m_pTarget)->GetPosition().z);
 
@@ -77,5 +81,5 @@ void MainCamera::LateUpdate(float elapsedTime)
 	eye += lookAt;
 
 	// ビュー行列を作成する
-	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(eye, lookAt, DirectX::SimpleMath::Vector3::Up);
+	m_view = Matrix::CreateLookAt(eye, lookAt, m_pTransform->GetUp());
 }
